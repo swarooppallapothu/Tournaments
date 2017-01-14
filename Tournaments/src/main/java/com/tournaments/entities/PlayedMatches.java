@@ -15,6 +15,7 @@ public class PlayedMatches implements Serializable {
 
     private int matchId;
     private int results;
+    private String matchName;
     private Team team1;
     private Team team2;
     private Tournament tournament;
@@ -37,6 +38,15 @@ public class PlayedMatches implements Serializable {
 
     public void setResults(int results) {
         this.results = results;
+    }
+
+    @Column(name = "MATCH_NAME")
+    public String getMatchName() {
+        return matchName;
+    }
+
+    public void setMatchName(String matchName) {
+        this.matchName = matchName;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)

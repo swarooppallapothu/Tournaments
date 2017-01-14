@@ -1,3 +1,4 @@
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
@@ -17,14 +18,13 @@
                         <%@include file="../sidebar.jsp"%>
                     </td>
                     <td width="80%" valign="top" class="contentBody">
-                        <form name="editTeamForm" autocomplete="off" class="formWrap">
+                        <s:form name="editTeamForm" autocomplete="off" class="formWrap">
                             <table border='0' width='480px' align='center'>
                                 <tr>
                                     <td>
-                                        Team Name
-                                    </td>
-                                    <td>
-                                        <input type="text" name="teamName" >
+                                        <s:hidden name="teamId" value="%{team.teamId}"/>
+                                        <s:hidden name="user.userId" value="%{team.user.userId}"/>
+                                        <s:textfield name="teamName" value="%{team.teamName}" label="Team Name" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -34,8 +34,7 @@
                                     </td>
                                 </tr>
                             </table>
-                        </form>
-
+                        </s:form>
                     </td>
                 </tr>
             </table>
@@ -46,7 +45,21 @@
                 var teamObj = {
                     "teamName": teamFormObj.teamName.value
                 };
+                var validations = {
+                    "userName": {
+                        "name": "teamName",
+                        "message": "Team Name required."
+                    }
+                };
                 console.log(teamObj);
+                var validation = validateForm(teamFormObj, validations, "notEmpty");
+                if (validation) {
+                    var confObj = {
+                        action: "updateTeam",
+                        form: "editTeamForm"
+                    };
+                    overrideSubmit(confObj);
+                }
             }
         </script>
     </body>

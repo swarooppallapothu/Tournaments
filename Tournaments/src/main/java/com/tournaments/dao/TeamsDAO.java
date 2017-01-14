@@ -59,6 +59,7 @@ public class TeamsDAO {
 
         try {
             tx.begin();
+            team = getTeam(team.getTeamId());
             em.remove(team);
             tx.commit();
         } catch (Exception e) {

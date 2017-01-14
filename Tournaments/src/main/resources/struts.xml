@@ -11,8 +11,12 @@
             <result name="error">/error.jsp</result>
         </action>
         <action name="login" method="authenticateUser" class="com.tournaments.actions.LoginAction" >
-            <result name="tournaments">/grids/tournaments.jsp</result>
-            <result name="teams">/grids/teams.jsp</result>
+            <result name="tournaments" type="redirectAction">
+                <param name="actionName">tournaments</param>
+            </result>
+            <result name="teams" type="redirectAction">
+                <param name="actionName">teams</param>
+            </result>
             <result name="error">/login.jsp</result>
         </action>
         <action name="logout" method="logout" class="com.tournaments.actions.LoginAction" >
@@ -63,20 +67,32 @@
             <result name="success">/forms/editTournament.jsp</result>
         </action>
         <action name="addtournament" method="addTournament" class="com.tournaments.actions.TournamentAction">
-            <result name="success" type="chain">tournaments</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">tournaments</param>
+            </result>
+            <!--<result name="success" type="chain">tournaments</result>-->
             <result name="input">/login.jsp</result>
             <result name="error">/login.jsp</result>
         </action>
         <action name="updatetournament" method="updateTournament" class="com.tournaments.actions.TournamentAction">
-            <result name="success" type="chain">tournaments</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">tournaments</param>
+            </result>
+            <!--<result name="success" type="chain">tournaments</result>-->
             <result name="error">/login.jsp</result>
         </action>
         <action name="deletetournament" method="deleteTournament" class="com.tournaments.actions.TournamentAction">
-            <result name="success" type="chain">tournaments</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">tournaments</param>
+            </result>
+            <!--<result name="success" type="chain">tournaments</result>-->
             <result name="error">/login.jsp</result>
         </action>
         <action name="inserttournament" method="insertTournament" class="com.tournaments.actions.TournamentAction">
-            <result name="success" type="chain">tournaments</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">tournaments</param>
+            </result>
+            <!--<result name="success" type="chain">tournaments</result>-->
             <result name="input">/login.jsp</result>
             <result name="error">/login.jsp</result>
         </action>
@@ -98,15 +114,23 @@
             <result name="success">/forms/editTeam.jsp</result>
         </action>
         <action name="addTeam" method="addTeam" class="com.tournaments.actions.TeamAction">
-            <result name="success">/grids/teams.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">teams</param>
+            </result> 
+            <!--<result name="success">/grids/teams.jsp</result>-->
             <result name="error">/login.jsp</result>
         </action>
         <action name="updateTeam" method="updateTeam" class="com.tournaments.actions.TeamAction">
-            <result name="success">/grids/teams.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">teams</param>
+            </result> 
+            <!--<result name="success">/grids/teams.jsp</result>-->
             <result name="error">/login.jsp</result>
         </action>
         <action name="deleteTeam" method="deleteTeam" class="com.tournaments.actions.TeamAction">
-            <result name="success">/grids/teams.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">teams</param>
+            </result> 
             <result name="error">/login.jsp</result>
         </action>
         <action name="addPlayerView" method="addPlayerView" class="com.tournaments.actions.PlayerAction" >
