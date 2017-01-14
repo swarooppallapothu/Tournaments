@@ -22,28 +22,28 @@
                             <table border='0' width='480px' align='center'>
                                 <tr>
                                     <td>
-                                    <s:hidden name="tournamentId" value="%{tournamentId}"/>
-                                    <s:hidden name="userId" value="%{tournament.user.userId}"/>
-                                    <s:textfield name="tournamentName" label="Tournament Name" value="%{tournament.tournamentName}"></s:textfield>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    <s:textfield name="tournamentDate" label="Tournament Date" value="%{tournament.tournamentDate}"></s:textfield>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
+                                        <s:hidden name="tournamentId" value="%{tournamentId}"/>
+                                        <s:hidden name="userId" value="%{tournament.user.userId}"/>
+                                        <s:textfield name="tournamentName" label="Tournament Name" value="%{tournament.tournamentName}"></s:textfield>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <s:textfield name="tournamentDate" label="Tournament Date" value="%{tournament.tournamentDate}"></s:textfield>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
                                         <s:textfield name="tournamentPlace" label="Tournament Place" value="%{tournament.tournamentPlace}"></s:textfield>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" align="center">
-                                        <input type="button" name="editTournament" value="Update" onclick="onEditTournamentBtnClick()">
-                                        <input type="reset" name="resetBtn" value="Reset">
-                                    </td>
-                                </tr>
-                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" align="center">
+                                            <input type="button" name="editTournament" value="Update" onclick="onEditTournamentBtnClick()">
+                                            <input type="reset" name="resetBtn" value="Reset">
+                                        </td>
+                                    </tr>
+                                </table>
                         </s:form>
                     </td>
                 </tr>
@@ -52,17 +52,29 @@
         <script>
             function onEditTournamentBtnClick(parameters) {
                 var tournamentFormObj = document.forms["editTournamentForm"];
-                var tournamentObj = {
-                    "tournamentId": tournamentFormObj.tournamentId.value,
-                    "tournamentName": tournamentFormObj.tournamentName.value,
-                    "tournamentDate": tournamentFormObj.tournamentDate.value,
-                    "tournamentPlace": tournamentFormObj.tournamentPlace.value,
+                var validations = {
+                    "tournamentName": {
+                        "name": "tournamentName",
+                        "message": "Tournament Name required."
+                    },
+                    "tournamentDate": {
+                        "name": "tournamentDate",
+                        "message": "Tournament Date required."
+                    },
+                    "tournamentPlace": {
+                        "name": "tournamentPlace",
+                        "message": "Tournament Place required."
+                    }
                 };
-                var confObj = {
+                var validation = validateForm(tournamentFormObj, validations, "notEmpty");
+                if (validation) {
+                    var confObj = {
                         action: "updatetournament",
                         form: "editTournamentForm"
                     };
-                overrideSubmit(confObj);
+                    overrideSubmit(confObj);
+                }
+
             }
         </script>
     </body>

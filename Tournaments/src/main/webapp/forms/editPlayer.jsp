@@ -1,3 +1,4 @@
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
@@ -17,23 +18,18 @@
                         <%@include file="../sidebar.jsp"%>
                     </td>
                     <td width="80%" valign="top" class="contentBody">
-                        <form name="editPlayerForm" autocomplete="off" class="formWrap">
+                        <s:form name="editPlayerForm" autocomplete="off" class="formWrap">
                             <table border='0' width='480px' align='center'>
                                 <tr>
                                     <td>
-                                        Team Name
-                                    </td>
-                                    <td>
-                                        <select type="text" name="team" >
-                                        </select>
+                                        <s:hidden name="playerId" value="%{player.playerId}"/>
+                                        <s:hidden name="team.oldTeamId" value="%{player.team.teamId}"/>
+                                        <s:textfield name="playerName"  label="Player Name" value="%{player.playerName}" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        Player Name
-                                    </td>
-                                    <td>
-                                        <input type="text" name="playerName" >
+                                        <s:select name="team.teamId"  label="Team Name" list="{}" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -43,20 +39,40 @@
                                     </td>
                                 </tr>
                             </table>
-                        </form>
-
+                        </s:form>
                     </td>
                 </tr>
             </table>
         </div>
         <script>
+            var playerFormObj = document.forms["editPlayerForm"];
             function onEditPlayerBtnClick(parameters) {
-                var playerFormObj = document.forms["editPlayerForm"];
-                var playerObj = {
-                    "playerName": playerFormObj.playerName.value
+                var validations = {
+                    "playerName": {
+                        "name": "playerName",
+                        "message": "Player Name required."
+                    }
                 };
-                console.log(playerObj);
+                var validation = validateForm(playerFormObj, validations, "notEmpty");
+                if (validation) {
+                    var confObj = {
+                        action: "updatePlayer",
+                        form: "editPlayerForm"
+                    };
+                    overrideSubmit(confObj);
+                }
             }
+
+            function loadTeamDetails() {
+                var teams = getTeams();
+                var teamSelect = $(playerFormObj["team.teamId"]);
+                teamSelect.find('option').remove();
+                $.each(teams, function (key, value) {
+                    $('<option>').val(key).text(value).appendTo(teamSelect);
+                });
+                teamSelect.val(playerFormObj["team.oldTeamId"].value);
+            }
+            loadTeamDetails();
         </script>
     </body>
 </html>

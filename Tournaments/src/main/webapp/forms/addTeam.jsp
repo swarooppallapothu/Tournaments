@@ -41,16 +41,12 @@
 
             function onAddTeamBtnClick(parameters) {
                 var teamFormObj = document.forms["addTeamForm"];
-                var teamObj = {
-                    "teamName": teamFormObj.teamName.value
-                };
                 var validations = {
                     "userName": {
                         "name": "teamName",
                         "message": "Team Name required."
                     }
                 };
-                console.log(teamObj);
                 var validation = validateForm(teamFormObj, validations, "notEmpty");
                 if (validation) {
                     var confObj = {

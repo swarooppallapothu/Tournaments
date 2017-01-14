@@ -1,3 +1,4 @@
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
@@ -25,14 +26,26 @@
                                 <th>Team Name</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>ABCD</td>
-                                <td>HYD</td>
-                                <td><button type="button" value="edit">Edit</button></td>
-                                <td><button type="button" value="delete">Delete</button></td>
-                            </tr>
+                            </tr>                            
+                            <s:iterator value="playersList" status="player">
+                                <tr>
+                                    <td><s:property value="#player.count"/></td>
+                                    <td><s:property value="playerName" /></td>
+                                    <td><s:property value="team.teamName" /></td>
+                                    <td>
+                                        <s:url id="editPlayerURL" action="editPlayerView">
+                                            <s:param name="playerId" value="%{playerId}"></s:param>
+                                        </s:url>
+                                        <s:a href="%{editPlayerURL}">Edit</s:a>
+                                    </td>
+                                    <td>
+                                        <s:url id="deletePlayerURL" action="deletePlayer">
+                                            <s:param name="playerId" value="%{playerId}"></s:param>
+                                        </s:url>
+                                        <s:a href="%{deletePlayerURL}">Delete</s:a>
+                                </td>
+                                </tr>
+                            </s:iterator>
                         </table>
                     </td>
                 </tr>

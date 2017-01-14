@@ -18,7 +18,7 @@
                         <%@include file="../sidebar.jsp"%>
                     </td>
                     <td width="80%" valign="top" class="contentBody gridWrap">
-                        <a href="<%=request.getContextPath()%>/getUserRegistrationPage.action">Add Tournament</a>
+                        <a href="<%=request.getContextPath()%>/getUserRegistrationPage.action">Add User</a>
                         <table border='0' width='100%' align='center'>
                             <tr>
                                 <th>#</th>

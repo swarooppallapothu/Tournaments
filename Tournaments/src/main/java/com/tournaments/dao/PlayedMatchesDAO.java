@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.tournaments.dao;
 
 import com.tournaments.entities.PlayedMatches;
@@ -15,10 +10,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-/**
- *
- * @author srinubabu
- */
 public class PlayedMatchesDAO {
 
     private EntityManagerFactory emf = null;
@@ -75,8 +66,9 @@ public class PlayedMatchesDAO {
         }
         return allMatches;
     }
+
     public List<PlayedMatches> findMatchByUserId(User user) {
-        
+
         TypedQuery<PlayedMatches> tpmQ;
         List<PlayedMatches> allMatches = null;
         try {

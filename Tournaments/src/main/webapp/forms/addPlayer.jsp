@@ -1,3 +1,4 @@
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
@@ -17,23 +18,16 @@
                         <%@include file="../sidebar.jsp"%>
                     </td>
                     <td width="80%" valign="top" class="contentBody">
-                        <form name="addPlayerForm" autocomplete="off" class="formWrap">
+                        <s:form name="addPlayerForm" autocomplete="off" class="formWrap">
                             <table border='0' width='480px' align='center'>
                                 <tr>
                                     <td>
-                                        Team Name
-                                    </td>
-                                    <td>
-                                        <select type="text" name="team" >
-                                        </select>
+                                        <s:textfield name="playerName"  label="Player Name" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        Player Name
-                                    </td>
-                                    <td>
-                                        <input type="text" name="playerName" >
+                                        <s:select name="team.teamId"  label="Team Name" list="{}" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -43,8 +37,7 @@
                                     </td>
                                 </tr>
                             </table>
-                        </form>
-
+                        </s:form>
                     </td>
                 </tr>
             </table>
@@ -52,16 +45,25 @@
         <script>
             var playerFormObj = document.forms["addPlayerForm"];
             function onAddPlayerBtnClick(parameters) {
-                
-                var playerObj = {
-                    "playerName": playerFormObj.playerName.value
+                var validations = {
+                    "playerName": {
+                        "name": "playerName",
+                        "message": "Player Name required."
+                    }
                 };
-                console.log(playerObj);
+                var validation = validateForm(playerFormObj, validations, "notEmpty");
+                if (validation) {
+                    var confObj = {
+                        action: "addPlayer",
+                        form: "addPlayerForm"
+                    };
+                    overrideSubmit(confObj);
+                }
             }
 
             function loadTeamDetails() {
                 var teams = getTeams();
-                var teamSelect = $(playerFormObj.team);
+                var teamSelect = $(playerFormObj["team.teamId"]);
                 teamSelect.find('option').remove();
                 $.each(teams, function (key, value) {
                     console.log(key, value);

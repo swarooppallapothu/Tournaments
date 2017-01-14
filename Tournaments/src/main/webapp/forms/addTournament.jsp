@@ -50,11 +50,6 @@
         <script>
             function onAddTournamentBtnClick(parameters) {
                 var tournamentFormObj = document.forms["addTournamentForm"];
-                var tournamentObj = {
-                    "tournamentName": tournamentFormObj.tournamentName.value,
-                    "tournamentDate": tournamentFormObj.tournamentDate.value,
-                    "tournamentPlace": tournamentFormObj.tournamentPlace.value
-                };
                 var validations = {
                     "tournamentName": {
                         "name": "tournamentName",

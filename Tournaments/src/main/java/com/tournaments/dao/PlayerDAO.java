@@ -58,6 +58,7 @@ public class PlayerDAO {
 
         try {
             etx.begin();
+            player = findPlayerByPlayerId(player.getPlayerId());
             em.remove(player);
             etx.commit();
         } catch (Exception e) {
@@ -65,7 +66,7 @@ public class PlayerDAO {
         }
     }
 
-/*    public void addPlayerToTeam(TeamPlayer teamPlayer) {
+    /*    public void addPlayerToTeam(TeamPlayer teamPlayer) {
 
         try {
             etx.begin();
@@ -97,7 +98,6 @@ public class PlayerDAO {
             e.printStackTrace();
         }
     }*/
-
     public List<Player> findAllPlayers() {
         List<Player> players = null;
         TypedQuery<Player> playerQ;
@@ -110,12 +110,12 @@ public class PlayerDAO {
         return players;
     }
 
-    public Player findPlayerByPlayerId(Player player) {
+    public Player findPlayerByPlayerId(int playerId) {
         Player existedPlayer = null;
         TypedQuery<Player> playerQ;
         try {
             playerQ = em.createNamedQuery("Player.findPlayerByPlayerId", Player.class);
-            playerQ.setParameter("playerId", player.getPlayerId());
+            playerQ.setParameter("playerId", playerId);
             existedPlayer = playerQ.getSingleResult();
         } catch (Exception e) {
             return existedPlayer;

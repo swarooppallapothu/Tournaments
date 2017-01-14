@@ -42,16 +42,12 @@
         <script>
             function onEditTeamBtnClick(parameters) {
                 var teamFormObj = document.forms["editTeamForm"];
-                var teamObj = {
-                    "teamName": teamFormObj.teamName.value
-                };
                 var validations = {
                     "userName": {
                         "name": "teamName",
                         "message": "Team Name required."
                     }
                 };
-                console.log(teamObj);
                 var validation = validateForm(teamFormObj, validations, "notEmpty");
                 if (validation) {
                     var confObj = {

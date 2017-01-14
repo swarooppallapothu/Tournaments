@@ -6,7 +6,7 @@ function validateForm(formObj, detailsObj, type) {
     var isSuccessfullyValidated = true;
     for (var emptyValue in detailsObj) {
         if (type === "notEmpty") {
-            if (!formObj[detailsObj[emptyValue].name].value) {
+            if (!formObj[detailsObj[emptyValue].name].value.trim()) {
                 alert(detailsObj[emptyValue].message);
                 isSuccessfullyValidated = false;
                 return;
@@ -68,7 +68,6 @@ function getTournaments() {
             result = {};
         }
     });
-    console.log(result);
     return result;
 }
 
@@ -87,6 +86,5 @@ function getTeams() {
             result = {};
         }
     });
-    console.log(result);
     return result;
 }
