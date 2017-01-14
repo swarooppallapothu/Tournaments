@@ -7,14 +7,17 @@ import com.tournaments.dao.UserDAO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
-public class UserAction extends ActionSupport implements ModelDriven<User>, SessionAware {
+public class UserAction extends ActionSupport implements ModelDriven<User>, SessionAware, ServletRequestAware {
 
     private Map<String, Object> sessionMap;
     private User user = new User();
     private UserDAO userDao = new UserDAO();
     private List<User> users = new ArrayList();
+    HttpServletRequest request;
 
     @Override
     public User getModel() {
@@ -26,8 +29,28 @@ public class UserAction extends ActionSupport implements ModelDriven<User>, Sess
         this.sessionMap = sessionMap;
     }
 
+    @Override
+    public void setServletRequest(HttpServletRequest request) {
+        this.request = request;
+    }
+
     public String getUserRegistrationPage() {
         return SUCCESS;
+    }
+
+    public String getEditUserRegistrationPage() {
+        String userId = this.request.getParameter("userId");
+        if (userId != null) {
+            User curUser = new User();
+            curUser.setUserId(Integer.parseInt(userId));
+            this.user = userDao.findByUserId(curUser);
+            if (this.user == null) {
+                return ERROR;
+            }
+            return SUCCESS;
+        } else {
+            return ERROR;
+        }
     }
 
     public String registerUser() {
@@ -38,7 +61,11 @@ public class UserAction extends ActionSupport implements ModelDriven<User>, Sess
 
     public String users() {
         this.setUsers(userDao.findAll());
+        return SUCCESS;
+    }
 
+    public String editUser() {
+        userDao.updateUser(user);
         return SUCCESS;
     }
 

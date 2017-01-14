@@ -17,6 +17,7 @@
                         <%@include file="../sidebar.jsp"%>
                     </td>
                     <td width="80%" valign="top" class="contentBody gridWrap" >
+                        <a href="<%=request.getContextPath()%>/addPlayerView.action">Add Player</a>
                         <table border='0' width='100%' align='center'>
                             <tr>
                                 <th>#</th>

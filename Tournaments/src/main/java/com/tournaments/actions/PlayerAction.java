@@ -5,12 +5,15 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.tournaments.entities.Player;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
-public class PlayerAction extends ActionSupport implements ModelDriven<Player>, SessionAware {
+public class PlayerAction extends ActionSupport implements ModelDriven<Player>, SessionAware, ServletRequestAware {
 
     private Map<String, Object> sessionMap;
     private Player player = new Player();
+    HttpServletRequest request;
 
     @Override
     public Player getModel() {
@@ -20,6 +23,11 @@ public class PlayerAction extends ActionSupport implements ModelDriven<Player>, 
     @Override
     public void setSession(Map<String, Object> sessionMap) {
         this.sessionMap = sessionMap;
+    }
+
+    @Override
+    public void setServletRequest(HttpServletRequest request) {
+        this.request = request;
     }
 
     public String players() {

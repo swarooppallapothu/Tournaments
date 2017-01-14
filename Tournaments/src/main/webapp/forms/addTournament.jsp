@@ -27,7 +27,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <%--<s:textfield name="tournamentDate"  label="Tournament Date"></s:textfield>--%>
+                                        <s:textfield name="tournamentDate"  label="Tournament Date"></s:textfield>
                                     </td>
                                 </tr>
                                 <tr>

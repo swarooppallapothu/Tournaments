@@ -11,7 +11,8 @@
             <result name="error">/error.jsp</result>
         </action>
         <action name="login" method="authenticateUser" class="com.tournaments.actions.LoginAction" >
-            <result name="success">/userHome.jsp</result>
+            <result name="tournaments">/grids/tournaments.jsp</result>
+            <result name="teams">/grids/teams.jsp</result>
             <result name="error">/login.jsp</result>
         </action>
         <action name="logout" method="logout" class="com.tournaments.actions.LoginAction" >
@@ -20,8 +21,16 @@
         <action name="registration" method="getUserRegistrationPage" class="com.tournaments.actions.LoginAction">
             <result name="success">/forms/userRegistration.jsp</result>
         </action>
+        <action name="edituserview" method="getEditUserRegistrationPage" class="com.tournaments.actions.UserAction">
+            <result name="success">/forms/editUserRegistration.jsp</result>
+            <result name="error">/NotExisted.jsp</result>
+        </action>
         <action name="registeruser" method="registerUser" class="com.tournaments.actions.UserAction">
             <result name="success">/login.jsp</result>
+            <result name="error">/login.jsp</result>
+        </action>
+        <action name="edituser" method="editUser" class="com.tournaments.actions.UserAction">
+            <result name="success">/grids/users.jsp</result>
             <result name="error">/login.jsp</result>
         </action>
         <action name="users" method="users" class="com.tournaments.actions.UserAction">

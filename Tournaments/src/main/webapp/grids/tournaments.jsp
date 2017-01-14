@@ -18,6 +18,7 @@
                         <%@include file="../sidebar.jsp"%>
                     </td>
                     <td width="80%" valign="top" class="contentBody gridWrap">
+                        <a href="<%=request.getContextPath()%>/addTournamentView.action">Add Tournament</a>
                         <table border='0' width='100%' align='center'>
                             <tr>
                                 <th>#</th>
@@ -27,16 +28,15 @@
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
-                            <tr>
                             <s:iterator value="tournmentsList" status="tournament">
                                 <tr>
-                                <td><s:property value="#tournament.count"/></td>
-                                <td><s:property value="tournamentName" /></td>
-                                <td><s:property value="tournamentDate" /></td>
-                                <td><s:property value="tournamentPlace" /></td>
-                                <td><button type="button" value="edit">Edit</button></td>
-                                <td><button type="button" value="delete">Delete</button></td>
-                            </tr>
+                                    <td><s:property value="#tournament.count"/></td>
+                                    <td><s:property value="tournamentName" /></td>
+                                    <td><s:property value="tournamentDate" /></td>
+                                    <td><s:property value="tournamentPlace" /></td>
+                                    <td><button type="button" value="edit">Edit</button></td>
+                                    <td><button type="button" value="delete">Delete</button></td>
+                                </tr>
                             </s:iterator>
                         </table>
                     </td>

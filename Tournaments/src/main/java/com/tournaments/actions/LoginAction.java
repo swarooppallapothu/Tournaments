@@ -38,7 +38,12 @@ public class LoginAction extends ActionSupport implements ModelDriven<User>, Ses
             sessionMap.put("userId", existedUser.getUserId());
             sessionMap.put("userName", existedUser.getUserName());
             sessionMap.put("userObject", existedUser);
-            return SUCCESS;
+            if (existedUser.getClearance() == 0) {
+                return "tournaments";
+            } else {
+                return "teams";
+            }
+
         } else {
             return ERROR;
         }
