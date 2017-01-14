@@ -41,13 +41,24 @@ public class TeamAction extends ActionSupport implements ModelDriven<Team>, Sess
     }
 
     public String teams() {
+        User user = (User)sessionMap.get("userObject");
+        if(user.getClearance() == 0){
         teamsList = teamDao.findAllTeams();
+        }else{
+        teamsList = teamDao.findTeamsByUserId(user);
+        }
+        
         this.setTeamsList(teamsList);
         return SUCCESS;
     }
-
+    
     public String getTeamsMap() {
+        User user = (User)sessionMap.get("userObject");
+        if(user.getClearance() == 0){
         teamsList = teamDao.findAllTeams();
+        }else{
+        teamsList = teamDao.findTeamsByUserId(user);
+        }
         teamMap = new LinkedHashMap<String, String>();
         for (Team currTeam : teamsList) {
             teamMap.put(currTeam.getTeamId() + "", currTeam.getTeamName());
