@@ -6,7 +6,8 @@
 package com.tournaments.dao;
 
 import com.tournaments.entities.Team;
-import com.tournaments.entities.TeamPlayer;
+import com.tournaments.entities.Tournament;
+//import com.tournaments.entities.TeamPlayer;
 import com.tournaments.entities.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,31 +105,17 @@ public class TeamsDAO {
         return teamsList;
     }
 
-    public List<TeamPlayer> findAllTeamPlayers() {
-
-        List<TeamPlayer> teamPlayers = null;
-        TypedQuery<TeamPlayer> teamPlayerQ;
+    public Team getTeam(int teamId) {
+        TypedQuery<Team> teamQ;
+        Team team = null;
         try {
-            teamPlayerQ = em.createNamedQuery("TeamPlayer.findAllTeamPlayers", TeamPlayer.class);
-            teamPlayers = teamPlayerQ.getResultList();
-        } catch (Exception e) {
-            return new ArrayList<>();
+            teamQ = em.createNamedQuery("Team.findByTeamId", Team.class);
+            teamQ.setParameter("teamId", teamId);
+            team = teamQ.getSingleResult();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        return teamPlayers;
-    }
-
-    public List<TeamPlayer> findAllTeamPlayersByTeamId(Team team) {
-
-        List<TeamPlayer> teamPlayers = null;
-        TypedQuery<TeamPlayer> teamPlayerQ;
-        try {
-            teamPlayerQ = em.createNamedQuery("TeamPlayer.findAllTeamPlayersByTeamId", TeamPlayer.class);
-            teamPlayerQ.setParameter("teamId", team.getTeamId());
-            teamPlayers = teamPlayerQ.getResultList();
-        } catch (Exception e) {
-            return new ArrayList<>();
-        }
-        return teamPlayers;
+        return team;
     }
 
 }

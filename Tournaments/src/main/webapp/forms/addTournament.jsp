@@ -23,25 +23,25 @@
                                 <tr>
                                     <td>
                                         <s:textfield name="tournamentName"  label="Tournament Name"></s:textfield>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
                                         <s:textfield name="tournamentDate"  label="Tournament Date"></s:textfield>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    <s:textfield name="tournamentPlace"  label="Tournament Place"></s:textfield>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" align="center">
-                                        <input type="button" name="addTournament" value="Add" onclick="onAddTournamentBtnClick()">
-                                        <input type="reset" name="resetBtn" value="Reset">
-                                    </td>
-                                </tr>
-                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        <s:textfield name="tournamentPlace"  label="Tournament Place"></s:textfield>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" align="center">
+                                            <input type="button" name="addTournament" value="Add" onclick="onAddTournamentBtnClick()">
+                                            <input type="reset" name="resetBtn" value="Reset">
+                                        </td>
+                                    </tr>
+                                </table>
                         </s:form>
                     </td>
                 </tr>
@@ -52,14 +52,31 @@
                 var tournamentFormObj = document.forms["addTournamentForm"];
                 var tournamentObj = {
                     "tournamentName": tournamentFormObj.tournamentName.value,
-//                    "tournamentDate": tournamentFormObj.tournamentDate.value,
+                    "tournamentDate": tournamentFormObj.tournamentDate.value,
                     "tournamentPlace": tournamentFormObj.tournamentPlace.value
                 };
-                var confObj = {
+                var validations = {
+                    "tournamentName": {
+                        "name": "tournamentName",
+                        "message": "Tournament Name required."
+                    },
+                    "tournamentDate": {
+                        "name": "tournamentDate",
+                        "message": "Tournament Date required."
+                    },
+                    "tournamentPlace": {
+                        "name": "tournamentPlace",
+                        "message": "Tournament Place required."
+                    }
+                };
+                var validation = validateForm(tournamentFormObj, validations, "notEmpty");
+                if (validation) {
+                    var confObj = {
                         action: "inserttournament",
                         form: "addTournamentForm"
                     };
-                overrideSubmit(confObj);
+                    overrideSubmit(confObj);
+                }
             }
         </script>
     </body>

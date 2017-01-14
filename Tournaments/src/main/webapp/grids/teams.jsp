@@ -1,3 +1,4 @@
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
@@ -22,17 +23,27 @@
                             <tr>
                                 <th>#</th>
                                 <th>Team Name</th>
-                                <th>Tournament Date</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>ABCD</td>
-                                <td>HYD</td>
-                                <td><button type="button" value="edit">Edit</button></td>
-                                <td><button type="button" value="delete">Delete</button></td>
-                            </tr>
+                            <s:iterator value="teamsList" status="team">
+                                <tr>
+                                    <td><s:property value="#team.count"/></td>
+                                    <td><s:property value="teamName" /></td>
+                                    <td>
+                                    <s:url id="editTeamURL" action="editTeamView">
+                                            <s:param name="teamId" value="%{teamId}"></s:param>
+                                            </s:url>
+                                        <s:a href="%{editTeamURL}">Edit</s:a>
+                                </td>
+                                <td>
+                                <s:url id="deleteTeamURL" action="deleteTeam">
+                                             <s:param name="teamId" value="%{teamId}"></s:param>
+                                        </s:url>
+                                        <s:a href="%{deleteTeamURL}">Delete</s:a>
+                                </td>
+                                </tr>
+                            </s:iterator>
                         </table>
                     </td>
                 </tr>

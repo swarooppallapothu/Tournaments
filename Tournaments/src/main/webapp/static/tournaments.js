@@ -52,3 +52,41 @@ function overrideSubmit(detailsObj) {
     document.forms[detailsObj.form].action = detailsObj.action + ".action";
     document.forms[detailsObj.form].submit();
 }
+
+function getTournaments() {
+    var result;
+    $.ajax({
+        url: cntxtPath + '/getTournaments.action',
+        type: "GET",
+        data: null,
+        dataType: "json",
+        async: false,
+        success: function (response) {
+            result = response;
+        },
+        error: function (xhr) {
+            result = {};
+        }
+    });
+    console.log(result);
+    return result;
+}
+
+function getTeams() {
+    var result;
+    $.ajax({
+        url: cntxtPath + '/getTeams.action',
+        type: "GET",
+        data: null,
+        dataType: "json",
+        async: false,
+        success: function (response) {
+            result = response;
+        },
+        error: function (xhr) {
+            result = {};
+        }
+    });
+    console.log(result);
+    return result;
+}

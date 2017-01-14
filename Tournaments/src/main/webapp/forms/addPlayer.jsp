@@ -50,13 +50,25 @@
             </table>
         </div>
         <script>
+            var playerFormObj = document.forms["addPlayerForm"];
             function onAddPlayerBtnClick(parameters) {
-                var playerFormObj = document.forms["addPlayerForm"];
+                
                 var playerObj = {
                     "playerName": playerFormObj.playerName.value
                 };
                 console.log(playerObj);
             }
+
+            function loadTeamDetails() {
+                var teams = getTeams();
+                var teamSelect = $(playerFormObj.team);
+                teamSelect.find('option').remove();
+                $.each(teams, function (key, value) {
+                    console.log(key, value);
+                    $('<option>').val(key).text(value).appendTo(teamSelect);
+                });
+            }
+            loadTeamDetails();
         </script>
     </body>
 </html>

@@ -6,7 +6,7 @@
 package com.tournaments.dao;
 
 import com.tournaments.entities.Player;
-import com.tournaments.entities.TeamPlayer;
+//import com.tournaments.entities.TeamPlayer;
 import com.tournaments.entities.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +65,7 @@ public class PlayerDAO {
         }
     }
 
-    public void addPlayerToTeam(TeamPlayer teamPlayer) {
+/*    public void addPlayerToTeam(TeamPlayer teamPlayer) {
 
         try {
             etx.begin();
@@ -96,7 +96,7 @@ public class PlayerDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     public List<Player> findAllPlayers() {
         List<Player> players = null;

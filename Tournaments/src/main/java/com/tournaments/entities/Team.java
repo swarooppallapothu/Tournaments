@@ -17,7 +17,8 @@ import javax.persistence.Table;
 @Table(name = "TEAMS")
 @NamedQueries({
     @NamedQuery(name = "Team.findTeamsByUserId", query="SELECT object(T) from Team T where T.user.userId = :userId"),
-    @NamedQuery(name = "Team.findTeamsByUserName", query="SELECT object(T) from Team T where T.user.userName = :userName")
+    @NamedQuery(name = "Team.findTeamsByUserName", query="SELECT object(T) from Team T where T.user.userName = :userName"),
+    @NamedQuery(name = "Team.findByTeamId", query = "SELECT object(t) FROM Team t where t.teamId = :teamId")
 })
 public class Team implements Serializable {
 

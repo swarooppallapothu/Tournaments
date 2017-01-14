@@ -9,6 +9,7 @@ import com.tournaments.entities.Tournament;
 import com.tournaments.entities.User;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ public class TournamentAction extends ActionSupport implements ModelDriven<Tourn
     private TournamentDAO tournamentDao = new TournamentDAO();
     private List<Tournament> tournmentsList = new ArrayList<>();
     Map parameters = ActionContext.getContext().getParameters();
+    private Map<String, String> tournaments = new LinkedHashMap<String, String>();
     HttpServletRequest request;
 
     @Override
@@ -44,10 +46,20 @@ public class TournamentAction extends ActionSupport implements ModelDriven<Tourn
         return SUCCESS;
     }
 
+    public String getTournamentsMap() {
+        tournmentsList = tournamentDao.findAll();
+        tournaments = new LinkedHashMap<String, String>();
+        for (Tournament trnmnt : tournmentsList) {
+            tournaments.put(trnmnt.getTournamentId() + "", trnmnt.getTournamentName());
+        }
+        this.setTournaments(tournaments);
+        return "json";
+    }
+
     public String insertTournament() {
         User user = (User) sessionMap.get("userObject");
         tournament.setUser(user);
-        tournament.setTournamentDate(new Date());
+//        tournament.setTournamentDate(new Date());
         tournamentDao.saveTournament(tournament);
         return SUCCESS;
     }
@@ -57,7 +69,7 @@ public class TournamentAction extends ActionSupport implements ModelDriven<Tourn
     }
 
     public String editTournamentView() {
-        String ids[] = (String[])parameters.get("tournamentId");
+        String ids[] = (String[]) parameters.get("tournamentId");
         tournament = tournamentDao.getTournament(Integer.parseInt(ids[0]));
         return SUCCESS;
     }
@@ -65,24 +77,25 @@ public class TournamentAction extends ActionSupport implements ModelDriven<Tourn
     public String addTournament() {
         User user = (User) sessionMap.get("userObject");
         tournament.setUser(user);
-        tournament.setTournamentDate(new Date());
+//        tournament.setTournamentDate(new Date());
         tournamentDao.saveTournament(tournament);
         return SUCCESS;
     }
+
     public String updateTournament() {
-        User user = (User)sessionMap.get("userObject");
+        User user = (User) sessionMap.get("userObject");
         tournament.setUser(user);
         tournamentDao.updateTournament(tournament);
         return SUCCESS;
     }
-    
+
     public String deleteTournament() {
-        String ids[] = (String[])parameters.get("tournamentId");
+        String ids[] = (String[]) parameters.get("tournamentId");
         tournament.setTournamentId(Integer.parseInt(ids[0]));
         tournamentDao.deleteTournament(tournament);
         return SUCCESS;
     }
-    
+
     public Tournament getTournament() {
         return tournament;
     }
@@ -97,5 +110,13 @@ public class TournamentAction extends ActionSupport implements ModelDriven<Tourn
 
     public void setTournmentsList(List<Tournament> list) {
         this.tournmentsList = list;
+    }
+
+    public Map<String, String> getTournaments() {
+        return tournaments;
+    }
+
+    public void setTournaments(Map<String, String> tournaments) {
+        this.tournaments = tournaments;
     }
 }

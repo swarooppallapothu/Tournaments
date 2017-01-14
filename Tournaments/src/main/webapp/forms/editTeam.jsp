@@ -21,15 +21,6 @@
                             <table border='0' width='480px' align='center'>
                                 <tr>
                                     <td>
-                                        Tournament Name
-                                    </td>
-                                    <td>
-                                        <select type="text" name="tournament" >
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
                                         Team Name
                                     </td>
                                     <td>
