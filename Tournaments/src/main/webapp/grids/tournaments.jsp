@@ -1,3 +1,4 @@
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
@@ -27,13 +28,16 @@
                                 <th>Delete</th>
                             </tr>
                             <tr>
-                                <td>1</td>
-                                <td>ABCD</td>
-                                <td>27/12/1991</td>
-                                <td>HYD</td>
+                                <s:iterator value="tournmentsList" status="tournament">
+                                <tr>
+                                <td><s:property value="#tournament.count"/></td>
+                                <td><s:property value="tournamentName" /></td>
+                                <td><s:property value="tournamentDate" /></td>
+                                <td><s:property value="tournamentPlace" /></td>
                                 <td><button type="button" value="edit">Edit</button></td>
                                 <td><button type="button" value="delete">Delete</button></td>
                             </tr>
+                            </s:iterator>
                         </table>
                     </td>
                 </tr>

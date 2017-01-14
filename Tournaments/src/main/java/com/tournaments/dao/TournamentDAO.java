@@ -52,7 +52,7 @@ public class TournamentDAO {
     public List<Tournament> findAll() {
         List<Tournament> allTournaments = null;
         try {
-            allTournaments = em.createQuery("SELECT OBJECT(T) FROM Tournament AS T").getResultList();
+            allTournaments = em.createQuery("SELECT object(T) FROM Tournament AS T").getResultList();
         } catch (Exception ex) {
             return new ArrayList<>();
         }

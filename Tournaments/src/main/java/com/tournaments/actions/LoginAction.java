@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.tournaments.actions;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -27,12 +32,32 @@ public class LoginAction extends ActionSupport implements ModelDriven<User>, Ses
         return SUCCESS;
     }
 
+    public String authenticateUser() {
+        User existedUser = userDao.authenticateUser(user);
+        if (existedUser != null) {
+            sessionMap.put("userId", existedUser.getUserId());
+            sessionMap.put("userName", existedUser.getUserName());
+            sessionMap.put("userObject", existedUser);
+            return SUCCESS;
+        } else {
+            return ERROR;
+        }
+    }
+
     public String getUserRegistrationPage() {
         return SUCCESS;
     }
 
-    public String registerUser() {
-        userDao.registerUser(user);
+    public String logout() {
+        if (sessionMap.containsKey("userObject")) {
+            sessionMap.remove("userObject");
+        }
+        if (sessionMap.containsKey("userName")) {
+            sessionMap.remove("userName");
+        }
+        if (sessionMap.containsKey("userId")) {
+            sessionMap.remove("userId");
+        }
         return SUCCESS;
     }
 

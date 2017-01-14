@@ -1,3 +1,4 @@
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
@@ -17,30 +18,21 @@
                         <%@include file="../sidebar.jsp"%>
                     </td>
                     <td width="80%" valign="top" class="contentBody">
-                        <form name="addTournamentForm" autocomplete="off" class="formWrap">
+                        <s:form name="addTournamentForm" autocomplete="off" class="formWrap">
                             <table border='0' width='480px' align='center'>
                                 <tr>
                                     <td>
-                                        Tournament Name
-                                    </td>
-                                    <td>
-                                        <input type="text" name="tournamentName" >
+                                        <s:textfield name="tournamentName"  label="Tournament Name"></s:textfield>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        Tournament Date
-                                    </td>
-                                    <td>
-                                        <input type="text" name="tournamentDate" >
+                                        <s:textfield name="tournamentDate"  label="Tournament Date"></s:textfield>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        Tournament Place
-                                    </td>
-                                    <td>
-                                        <input type="text" name="tournamentPlace" >
+                                    <s:textfield name="tournamentPlace"  label="Tournament Place"></s:textfield>
                                     </td>
                                 </tr>
                                 <tr>
@@ -50,8 +42,7 @@
                                     </td>
                                 </tr>
                             </table>
-                        </form>
-
+                        </s:form>
                     </td>
                 </tr>
             </table>
@@ -64,9 +55,12 @@
                     "tournamentDate": tournamentFormObj.tournamentDate.value,
                     "tournamentPlace": tournamentFormObj.tournamentPlace.value
                 };
-                console.log(tournamentObj);
+                var confObj = {
+                        action: "addtournament",
+                        form: "addTournamentForm"
+                    };
+                overrideSubmit(confObj);
             }
         </script>
     </body>
 </html>
-

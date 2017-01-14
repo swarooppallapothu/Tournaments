@@ -14,7 +14,7 @@
                 <td colspan="2" style="height: 100px;" bgcolor="#777d6a"><h1>Play Ground</h1></td></tr>
             <tr>
                 <td width="20%" valign="top" bgcolor="#999f8e">
-                    <a href="tournment.action">Tournaments</a><br /><br />
+                    <a href="tournments.action">Tournaments</a><br /><br />
                     <a href="teams.action">Teams</a><br />
                 </td>
                 <td width="80%" valign="top" bgcolor="#d2d8c7">

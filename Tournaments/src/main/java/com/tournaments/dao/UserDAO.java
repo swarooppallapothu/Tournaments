@@ -88,7 +88,7 @@ public class UserDAO {
         User existedUser = null;
         try {
             queryDevice = em.createNamedQuery("User.authenticateUser", User.class);
-            queryDevice.setParameter("userId", user.getUserId());
+            queryDevice.setParameter("userName", user.getUserName());
             queryDevice.setParameter("password", user.getPassword());
             existedUser = queryDevice.getSingleResult();
         } catch (NoResultException nre) {

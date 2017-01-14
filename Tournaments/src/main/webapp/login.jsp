@@ -1,3 +1,4 @@
+<%@taglib uri="/struts-tags" prefix="s"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
@@ -14,22 +15,16 @@
                 </tr>
                 <tr>
                     <td width="100%" valign="top" class="contentBody">
-                        <form name="loginForm" action="login" autocomplete="off" class="formWrap">
+                        <s:form name="loginForm" action="login" autocomplete="off" class="formWrap">
                             <table border='0' width='480px' align='center'>
                                 <tr>
                                     <td>
-                                        Username
-                                    </td>
-                                    <td>
-                                        <input type="text" name="userName" >
+                                      <s:textfield name="userName"  label="Username"></s:textfield>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        Password
-                                    </td>
-                                    <td>
-                                        <input type="password" name="password" >
+                                       <s:password name="password" label="Password"></s:password>
                                     </td>
                                 </tr>
                                 <tr>
@@ -45,7 +40,7 @@
                                 </tr>
 
                             </table>
-                        </form>
+                        </s:form>
 
                     </td>
                 </tr>
@@ -68,8 +63,14 @@
                         "message": "Password required."
                     }
                 };
-                validateForm(loginFormObj, validations);
-                console.log(loginObj);
+                var validation = validateForm(loginFormObj, validations, "notEmpty");
+                if (validation) {
+                    var confObj = {
+                        action: "login",
+                        form: "loginForm"
+                    };
+                    overrideSubmit(confObj);
+                }
             }
         </script>
     </body>

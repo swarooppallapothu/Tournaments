@@ -1,7 +1,12 @@
 <table align="center" style="width: 100%">
     <tr>
         <td>
-            <a href="<%=request.getContextPath()%>/tournaments.action">Tournaments</a> 
+            <a href="<%=request.getContextPath()%>/tournaments.action">View Tournaments</a> 
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="<%=request.getContextPath()%>/addTournamentView.action">Add Tournament</a> 
         </td>
     </tr>
     <tr>

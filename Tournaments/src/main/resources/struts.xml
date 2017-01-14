@@ -10,6 +10,13 @@
             <result name="success">/login.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
+        <action name="login" method="authenticateUser" class="com.tournaments.actions.LoginAction" >
+            <result name="success">/userHome.jsp</result>
+            <result name="error">/login.jsp</result>
+        </action>
+        <action name="logout" method="logout" class="com.tournaments.actions.LoginAction" >
+            <result name="success">/login.jsp</result>
+        </action>
         <action name="registration" method="getUserRegistrationPage" class="com.tournaments.actions.LoginAction">
             <result name="success">/forms/userRegistration.jsp</result>
         </action>
@@ -31,8 +38,8 @@
         <action name="editTournamentView" method="editTournamentView" class="com.tournaments.actions.TournamentAction">
             <result name="success">/forms/editTournament.jsp</result>
         </action>
-        <action name="addTournament" method="addTournament" class="com.tournaments.actions.TournamentAction">
-            <result name="success">/login.jsp</result>
+        <action name="addtournament" method="addTournament" class="com.tournaments.actions.TournamentAction">
+            <result name="success" type="chain">tournaments</result>
             <result name="error">/login.jsp</result>
         </action>
         <action name="teams" method="teams" class="com.tournaments.actions.TeamAction">
