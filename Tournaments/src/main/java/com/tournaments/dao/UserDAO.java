@@ -48,6 +48,15 @@ public class UserDAO {
         em.merge(user);
         transaction.commit();
     }
+    public void deleteUser(User user) {
+        
+        user = findByUserId(user);
+        if(user != null){
+        transaction.begin();
+        em.remove(user);
+        transaction.commit();
+        }
+    }
 
     public List<User> findAll() {
         List<User> allUsers = null;

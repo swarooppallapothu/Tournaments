@@ -32,8 +32,20 @@
                                     <td><s:property value="%{#rowStatus.count}"/></td>
                                     <td><s:property value="userName"/></td>
                                     <td><s:property value="clearance"/></td>
-                                    <td><button type="button" value="edit">Edit</button></td>
-                                    <td><button type="button" value="delete">Delete</button></td>
+                                    <td>
+                                        <s:url id="editUserURL" action="edituseerview">
+                                            <s:param name="userId" value="%{userId}"></s:param>
+                                            </s:url>
+                                        <s:a href="%{editUserURL}">Edit</s:a>
+                                    </td>
+                                    <td>
+                                        <s:if test="clearance != 0">
+                                        <s:url id="deleteUserURL" action="deleteuser">
+                                             <s:param name="userId" value="%{userId}"></s:param>
+                                        </s:url>
+                                        <s:a href="%{deleteUserURL}">Delete</s:a>
+                                        </s:if>
+                                    </td>
                                 </tr>
                             </s:iterator>
                         </table>

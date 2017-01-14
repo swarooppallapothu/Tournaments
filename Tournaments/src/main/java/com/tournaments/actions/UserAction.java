@@ -1,5 +1,6 @@
 package com.tournaments.actions;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.tournaments.entities.User;
@@ -18,7 +19,8 @@ public class UserAction extends ActionSupport implements ModelDriven<User>, Sess
     private UserDAO userDao = new UserDAO();
     private List<User> users = new ArrayList();
     HttpServletRequest request;
-
+    Map parameters = ActionContext.getContext().getParameters();
+    
     @Override
     public User getModel() {
         return user;
@@ -63,9 +65,21 @@ public class UserAction extends ActionSupport implements ModelDriven<User>, Sess
         this.setUsers(userDao.findAll());
         return SUCCESS;
     }
-
+    
+    public String getEditUserView(){
+       String ids[] = (String[])parameters.get("userId");
+       user.setUserId(Integer.parseInt(ids[0]));
+       user = userDao.findByUserId(user);
+       return SUCCESS;
+    }
     public String editUser() {
         userDao.updateUser(user);
+        return SUCCESS;
+    }
+    public String deleteUser() {
+        String ids[] = (String[])parameters.get("userId");
+       user.setUserId(Integer.parseInt(ids[0]));
+         userDao.deleteUser(user);
         return SUCCESS;
     }
 

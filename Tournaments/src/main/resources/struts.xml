@@ -33,6 +33,14 @@
             <result name="success">/grids/users.jsp</result>
             <result name="error">/login.jsp</result>
         </action>
+        <action name="edituseerview" method="getEditUserView" class="com.tournaments.actions.UserAction">
+            <result name="success">/forms/editUserView.jsp</result>
+            <result name="error">/login.jsp</result>
+        </action>
+        <action name="deleteuser" method="deleteUser" class="com.tournaments.actions.UserAction">
+            <result name="success">/grids/users.jsp</result>
+            <result name="error">/login.jsp</result>
+        </action>
         <action name="users" method="users" class="com.tournaments.actions.UserAction">
             <result name="success">/grids/users.jsp</result>
             <result name="error">/login.jsp</result>
