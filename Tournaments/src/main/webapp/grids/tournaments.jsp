@@ -28,7 +28,7 @@
                                 <th>Delete</th>
                             </tr>
                             <tr>
-                                <s:iterator value="tournmentsList" status="tournament">
+                            <s:iterator value="tournmentsList" status="tournament">
                                 <tr>
                                 <td><s:property value="#tournament.count"/></td>
                                 <td><s:property value="tournamentName" /></td>

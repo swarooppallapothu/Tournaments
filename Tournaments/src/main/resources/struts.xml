@@ -40,6 +40,12 @@
         </action>
         <action name="addtournament" method="addTournament" class="com.tournaments.actions.TournamentAction">
             <result name="success" type="chain">tournaments</result>
+            <result name="input">/login.jsp</result>
+            <result name="error">/login.jsp</result>
+        </action>
+        <action name="inserttournament" method="insertTournament" class="com.tournaments.actions.TournamentAction">
+            <result name="success" type="chain">tournaments</result>
+            <result name="input">/login.jsp</result>
             <result name="error">/login.jsp</result>
         </action>
         <action name="teams" method="teams" class="com.tournaments.actions.TeamAction">

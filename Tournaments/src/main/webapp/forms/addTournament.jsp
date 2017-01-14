@@ -27,7 +27,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <s:textfield name="tournamentDate"  label="Tournament Date"></s:textfield>
+                                        <%--<s:textfield name="tournamentDate"  label="Tournament Date"></s:textfield>--%>
                                     </td>
                                 </tr>
                                 <tr>
@@ -52,11 +52,11 @@
                 var tournamentFormObj = document.forms["addTournamentForm"];
                 var tournamentObj = {
                     "tournamentName": tournamentFormObj.tournamentName.value,
-                    "tournamentDate": tournamentFormObj.tournamentDate.value,
+//                    "tournamentDate": tournamentFormObj.tournamentDate.value,
                     "tournamentPlace": tournamentFormObj.tournamentPlace.value
                 };
                 var confObj = {
-                        action: "addtournament",
+                        action: "inserttournament",
                         form: "addTournamentForm"
                     };
                 overrideSubmit(confObj);

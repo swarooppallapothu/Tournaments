@@ -32,7 +32,13 @@ public class TournamentAction extends ActionSupport implements ModelDriven<Tourn
         tournmentsList = tournamentDao.findAll();
         return SUCCESS;
     }
-
+    public String insertTournament(){
+        User user = (User)sessionMap.get("userObject");
+        tournament.setUser(user);
+        tournament.setTournamentDate(new Date());
+        tournamentDao.saveTournament(tournament);
+        return SUCCESS;
+    }
     public String addTournamentView() {
         return SUCCESS;
     }
@@ -55,5 +61,11 @@ public class TournamentAction extends ActionSupport implements ModelDriven<Tourn
 
     public void setTournament(Tournament tournament) {
         this.tournament = tournament;
+    }
+    public List<Tournament> getTournmentsList() {
+        return tournmentsList;
+    }
+    public void setTournmentsList(List<Tournament> list) {
+        this.tournmentsList = tournmentsList;
     }
 }
