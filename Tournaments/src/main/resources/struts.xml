@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true" />
+    <package name="default" namespace="/" extends="struts-default">
+        <action name="home" method="getLoginPage" class="com.tournaments.actions.LoginAction" >
+            <result name="success">/login.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name="registration" method="getUserRegistrationPage" class="com.tournaments.actions.LoginAction">
+            <result name="success">/forms/userRegistration.jsp</result>
+        </action>
+        <action name="registeruser" method="registerUser" class="com.tournaments.actions.LoginAction">
+            <result name="success">/login.jsp</result>
+            <result name="error">/login.jsp</result>
+        </action>
+        <action name="tournaments" method="tournaments" class="com.tournaments.actions.TournamentAction">
+            <result name="success">/grids/tournaments.jsp</result>
+        </action>
+        <action name="addTournamentView" method="addTournamentView" class="com.tournaments.actions.TournamentAction" >
+            <result name="success">/forms/addTournament.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name="editTournamentView" method="editTournamentView" class="com.tournaments.actions.TournamentAction">
+            <result name="success">/forms/editTournament.jsp</result>
+        </action>
+        <action name="addTournament" method="addTournament" class="com.tournaments.actions.TournamentAction">
+            <result name="success">/login.jsp</result>
+            <result name="error">/login.jsp</result>
+        </action>
+        <action name="teams" method="teams" class="com.tournaments.actions.TeamAction">
+            <result name="success">/grids/teams.jsp</result>
+        </action>        
+        <action name="addTeamView" method="addTeamView" class="com.tournaments.actions.TeamAction" >
+            <result name="success">/forms/addTeam.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name="editTeamView" method="editTeamView" class="com.tournaments.actions.TeamAction">
+            <result name="success">/forms/editTeam.jsp</result>
+        </action>
+        <action name="addTeam" method="addTeam" class="com.tournaments.actions.TeamAction">
+            <result name="success">/login.jsp</result>
+            <result name="error">/login.jsp</result>
+        </action>
+        <action name="addPlayerView" method="addPlayerView" class="com.tournaments.actions.PlayerAction" >
+            <result name="success">/forms/addPlayer.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name="editPlayerView" method="editPlayerView" class="com.tournaments.actions.PlayerAction">
+            <result name="success">/forms/editPlayer.jsp</result>
+        </action>
+        <action name="players" method="players" class="com.tournaments.actions.PlayerAction">
+            <result name="success">/grids/players.jsp</result>
+        </action>
+    </package>
+</struts>
