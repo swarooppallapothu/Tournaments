@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name="PlayedMatchs.findMatchById", query = "Select object(pm) from PlayedMatches pm where pm.matchId =:matchId"),
     @NamedQuery(name="PlayedMatchs.findAllMatches", query = "Select object(pm) from PlayedMatches pm"),
-    @NamedQuery(name="PlayedMatchs.findMatchByUserId", query = "Select object(pm) from PlayedMatches pm where pm.user.userId = :userId")
+    @NamedQuery(name="PlayedMatchs.findMatchByUserId", query = "SELECT object(pm) from PlayedMatches pm where pm.user.userId = :userId")
 })
 public class PlayedMatches implements Serializable {
 

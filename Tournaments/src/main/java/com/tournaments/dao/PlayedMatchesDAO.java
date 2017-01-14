@@ -80,7 +80,7 @@ public class PlayedMatchesDAO {
         TypedQuery<PlayedMatches> tpmQ;
         List<PlayedMatches> allMatches = null;
         try {
-            tpmQ = em.createNamedQuery("PlayedMatchs.findAllMatches", PlayedMatches.class);
+            tpmQ = em.createNamedQuery("PlayedMatchs.findMatchByUserId", PlayedMatches.class);
             tpmQ.setParameter("userId", user.getUserId());
             allMatches = tpmQ.getResultList();
         } catch (Exception e) {
