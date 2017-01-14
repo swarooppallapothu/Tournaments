@@ -1,10 +1,54 @@
-function validateForm(formObj, notEmptyValues) {
+function validateForm(formObj, detailsObj, type) {
     if (!formObj) {
         return;
     }
 
-    for (var emptyValue in notEmptyValues) {
-        console.log(notEmptyValues[emptyValue].name + "   " + formObj[notEmptyValues[emptyValue].name].value + "   " + notEmptyValues[emptyValue].message);
+    var isSuccessfullyValidated = true;
+    for (var emptyValue in detailsObj) {
+        if (type === "notEmpty") {
+            if (!formObj[detailsObj[emptyValue].name].value) {
+                alert(detailsObj[emptyValue].message);
+                isSuccessfullyValidated = false;
+                return;
+            }
+        }
     }
-    return true;
+    return isSuccessfullyValidated;
+}
+
+function submitActionConfObj() {
+    return {
+        url: "",
+        type: "",
+        data: "",
+        contentType: "",
+        dataType: "",
+        async: "",
+        successAction: "",
+        cntxtPath: "",
+        form: ""
+    };
+}
+
+function submitAction(detailsObject) {
+    $.ajax({
+        url: detailsObject.url,
+        type: detailsObject.type,
+        data: typeof detailsObject.data === "object" ? JSON.stringify(detailsObject.data) : detailsObject.data,
+        contentType: detailsObject.contentType,
+        dataType: detailsObject.json,
+        async: false,
+        success: function (response) {
+            window.location.href = detailsObject.successAction;
+
+        },
+        error: function (xhr) {
+            window.location.href = detailsObject.cntxtPath + "/error.action";
+        }
+    });
+}
+
+function overrideSubmit(detailsObj) {
+    document.forms[detailsObj.form].action = detailsObj.action + ".action";
+    document.forms[detailsObj.form].submit();
 }

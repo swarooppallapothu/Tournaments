@@ -14,28 +14,7 @@
                 </tr>
                 <tr>
                     <td width="20%" valign="top" class="sidebar">
-                        <table align="center" style="width: 100%">
-                            <tr>
-                                <td>
-                                    <a href="void(0)">Tournaments</a> 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="void(0)">Teams</a><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="void(0)">Players</a><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="void(0)">Team Details</a><br>
-                                </td>
-                            </tr>                            
-                        </table>
+                        <%@include file="../sidebar.jsp"%>
                     </td>
                     <td width="80%" valign="top" class="contentBody">
                         <form name="addTeamForm" autocomplete="off" class="formWrap">

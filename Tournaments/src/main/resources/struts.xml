@@ -13,8 +13,12 @@
         <action name="registration" method="getUserRegistrationPage" class="com.tournaments.actions.LoginAction">
             <result name="success">/forms/userRegistration.jsp</result>
         </action>
-        <action name="registeruser" method="registerUser" class="com.tournaments.actions.LoginAction">
+        <action name="registeruser" method="registerUser" class="com.tournaments.actions.UserAction">
             <result name="success">/login.jsp</result>
+            <result name="error">/login.jsp</result>
+        </action>
+        <action name="users" method="users" class="com.tournaments.actions.UserAction">
+            <result name="success">/grids/users.jsp</result>
             <result name="error">/login.jsp</result>
         </action>
         <action name="tournaments" method="tournaments" class="com.tournaments.actions.TournamentAction">

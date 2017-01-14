@@ -1,3 +1,4 @@
+<%@taglib uri="/struts-tags" prefix="s"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
@@ -14,49 +15,27 @@
                 </tr>
                 <tr>
                     <td width="20%" valign="top" class="sidebar">
-                        <table align="center" style="width: 100%">
-                            <tr>
-                                <td>
-                                    <a href="void(0)">Tournaments</a> 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="void(0)">Teams</a><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="void(0)">Players</a><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="void(0)">Team Details</a><br>
-                                </td>
-                            </tr>                            
-                        </table>
+                        <%@include file="../sidebar.jsp"%>
                     </td>
-                    <td width="80%" valign="top" class="contentBody">
-                        <form name="addPlayerForm" autocomplete="off" class="gridWrap">
-                            <table border='0' width='100%' align='center'>
+                    <td width="80%" valign="top" class="contentBody gridWrap">
+                        <table border='0' width='100%' align='center'>
+                            <tr>
+                                <th>#</th>
+                                <th>User Name</th>
+                                <th>CLEARANCE</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            <s:iterator value="users" status="rowStatus">
                                 <tr>
-                                    <th>#</th>
-                                    <th>User Name</th>
-                                    <th>CLEARANCE</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>ABCD</td>
-                                    <td>1</td>
+                                    <td><s:property value="%{#rowStatus.count}"/></td>
+                                    <td><s:property value="userName"/></td>
+                                    <td><s:property value="clearance"/></td>
                                     <td><button type="button" value="edit">Edit</button></td>
                                     <td><button type="button" value="delete">Delete</button></td>
                                 </tr>
-                            </table>
-                        </form>
-
+                            </s:iterator>
+                        </table>
                     </td>
                 </tr>
             </table>
