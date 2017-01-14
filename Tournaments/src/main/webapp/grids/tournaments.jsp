@@ -34,8 +34,18 @@
                                     <td><s:property value="tournamentName" /></td>
                                     <td><s:property value="tournamentDate" /></td>
                                     <td><s:property value="tournamentPlace" /></td>
-                                    <td><button type="button" value="edit">Edit</button></td>
-                                    <td><button type="button" value="delete">Delete</button></td>
+                                    <td>
+                                    <s:url id="editTournamentURL" action="editTournamentView">
+                                            <s:param name="tournamentId" value="%{tournamentId}"></s:param>
+                                            </s:url>
+                                        <s:a href="%{editTournamentURL}">Edit</s:a>
+                                </td>
+                                <td>
+                                <s:url id="deleteTournamentURL" action="deletetournament">
+                                             <s:param name="tournamentId" value="%{tournamentId}"></s:param>
+                                        </s:url>
+                                        <s:a href="%{deleteTournamentURL}">Delete</s:a>
+                                </td>
                                 </tr>
                             </s:iterator>
                         </table>

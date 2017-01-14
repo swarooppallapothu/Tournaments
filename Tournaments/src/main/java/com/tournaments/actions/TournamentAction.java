@@ -1,6 +1,7 @@
 package com.tournaments.actions;
 
 import static com.opensymphony.xwork2.Action.SUCCESS;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.tournaments.dao.TournamentDAO;
@@ -19,7 +20,8 @@ public class TournamentAction extends ActionSupport implements ModelDriven<Tourn
     private Map<String, Object> sessionMap;
     private Tournament tournament = new Tournament();
     private TournamentDAO tournamentDao = new TournamentDAO();
-    private List<Tournament> tournmentsList = new ArrayList<Tournament>();
+    private List<Tournament> tournmentsList = new ArrayList<>();
+    Map parameters = ActionContext.getContext().getParameters();
     HttpServletRequest request;
 
     @Override
@@ -55,6 +57,8 @@ public class TournamentAction extends ActionSupport implements ModelDriven<Tourn
     }
 
     public String editTournamentView() {
+        String ids[] = (String[])parameters.get("tournamentId");
+        tournament = tournamentDao.getTournament(Integer.parseInt(ids[0]));
         return SUCCESS;
     }
 
@@ -65,7 +69,20 @@ public class TournamentAction extends ActionSupport implements ModelDriven<Tourn
         tournamentDao.saveTournament(tournament);
         return SUCCESS;
     }
-
+    public String updateTournament() {
+        User user = (User)sessionMap.get("userObject");
+        tournament.setUser(user);
+        tournamentDao.updateTournament(tournament);
+        return SUCCESS;
+    }
+    
+    public String deleteTournament() {
+        String ids[] = (String[])parameters.get("tournamentId");
+        tournament.setTournamentId(Integer.parseInt(ids[0]));
+        tournamentDao.deleteTournament(tournament);
+        return SUCCESS;
+    }
+    
     public Tournament getTournament() {
         return tournament;
     }

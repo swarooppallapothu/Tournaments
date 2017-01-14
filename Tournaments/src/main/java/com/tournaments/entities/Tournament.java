@@ -18,7 +18,8 @@ import javax.persistence.Table;
 @Table(name = "TOURNAMENTS")
 @NamedQueries({
     @NamedQuery(name = "Tournament.findTournamentsByUserId", query = "SELECT object(t) FROM Tournament t where t.user.userId = :userId"),
-    @NamedQuery(name = "Tournament.findTournamentsByUserName", query = "SELECT object(t) FROM Tournament t where t.user.userName = :userName")
+    @NamedQuery(name = "Tournament.findTournamentsByUserName", query = "SELECT object(t) FROM Tournament t where t.user.userName = :userName"),
+    @NamedQuery(name = "Tournament.findByTournamentId", query = "SELECT object(t) FROM Tournament t where t.tournamentId = :tournamentId"),
 })
 public class Tournament implements Serializable {
 

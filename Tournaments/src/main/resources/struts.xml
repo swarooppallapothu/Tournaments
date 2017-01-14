@@ -52,6 +52,14 @@
             <result name="input">/login.jsp</result>
             <result name="error">/login.jsp</result>
         </action>
+        <action name="updatetournament" method="updateTournament" class="com.tournaments.actions.TournamentAction">
+            <result name="success" type="chain">tournaments</result>
+            <result name="error">/login.jsp</result>
+        </action>
+        <action name="deletetournament" method="deleteTournament" class="com.tournaments.actions.TournamentAction">
+            <result name="success" type="chain">tournaments</result>
+            <result name="error">/login.jsp</result>
+        </action>
         <action name="inserttournament" method="insertTournament" class="com.tournaments.actions.TournamentAction">
             <result name="success" type="chain">tournaments</result>
             <result name="input">/login.jsp</result>

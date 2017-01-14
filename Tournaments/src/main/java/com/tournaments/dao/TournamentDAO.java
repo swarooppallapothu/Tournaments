@@ -45,6 +45,7 @@ public class TournamentDAO {
 
     public void deleteTournament(Tournament tournament) {
         transaction.begin();
+        tournament = getTournament(tournament.getTournamentId());
         em.remove(tournament);
         transaction.commit();
     }
