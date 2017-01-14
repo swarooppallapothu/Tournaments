@@ -7,10 +7,17 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "PLAYED_MATCHES")
+@NamedQueries({
+    @NamedQuery(name="PlayedMatchs.findMatchById", query = "Select object(pm) from PlayedMatches pm where pm.matchId =:matchId"),
+    @NamedQuery(name="PlayedMatchs.findAllMatches", query = "Select object(pm) from PlayedMatches pm"),
+    @NamedQuery(name="PlayedMatchs.findMatchByUserId", query = "Select object(pm) from PlayedMatches pm where pm.user.userId = :userId")
+})
 public class PlayedMatches implements Serializable {
 
     private int matchId;
@@ -60,7 +67,7 @@ public class PlayedMatches implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TEAMA", referencedColumnName = "TEAM_ID")
+    @JoinColumn(name = "TEAMB", referencedColumnName = "TEAM_ID")
     public Team getTeamB() {
         return teamB;
     }
