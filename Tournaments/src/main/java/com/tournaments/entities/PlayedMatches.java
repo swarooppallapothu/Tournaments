@@ -16,8 +16,8 @@ public class PlayedMatches implements Serializable {
     private int matchId;
     private int results;
     private String matchName;
-    private Team team1;
-    private Team team2;
+    private Team teamA;
+    private Team teamB;
     private Tournament tournament;
     private User user;
 
@@ -50,23 +50,23 @@ public class PlayedMatches implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TEAM1", referencedColumnName = "TEAM_ID")
-    public Team getTeam1() {
-        return team1;
+    @JoinColumn(name = "TEAMA", referencedColumnName = "TEAM_ID")
+    public Team getTeamA() {
+        return teamA;
     }
 
-    public void setTeam1(Team team1) {
-        this.team1 = team1;
+    public void setTeamA(Team teamA) {
+        this.teamA = teamA;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TEAM2", referencedColumnName = "TEAM_ID")
-    public Team getTeam2() {
-        return team2;
+    @JoinColumn(name = "TEAMA", referencedColumnName = "TEAM_ID")
+    public Team getTeamB() {
+        return teamB;
     }
 
-    public void setTeam2(Team team2) {
-        this.team2 = team2;
+    public void setTeamB(Team teamB) {
+        this.teamB = teamB;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
