@@ -64,68 +64,71 @@ public class TeamsDAO {
             e.printStackTrace();
         }
     }
-    
-    public List<Team> findAllTeams(){
-        
+
+    public List<Team> findAllTeams() {
+
         List<Team> teamsList = null;
-        try{
+        try {
             teamsList = em.createQuery("select object(T) from Team T").getResultList();
-        }catch(Exception e){
+        } catch (Exception e) {
             return new ArrayList<>();
         }
         return teamsList;
     }
-    public List<Team> findTeamsByUserId(User user){
-        
+
+    public List<Team> findTeamsByUserId(User user) {
+
         List<Team> teamsList = null;
         TypedQuery teamQ;
-        try{
+        try {
             teamQ = em.createNamedQuery("Team.findTeamsByUserId", Team.class);
             teamQ.setParameter("userId", user.getUserId());
             teamsList = teamQ.getResultList();
-        }catch(Exception e){
+        } catch (Exception e) {
             return new ArrayList<>();
         }
         return teamsList;
     }
-    public List<Team> findTeamsByUserName(User user){
-        
+
+    public List<Team> findTeamsByUserName(User user) {
+
         List<Team> teamsList = null;
         TypedQuery teamQ;
-        try{
+        try {
             teamQ = em.createNamedQuery("Team.findTeamsByUserName", Team.class);
             teamQ.setParameter("userName", user.getUserName());
             teamsList = teamQ.getResultList();
-        }catch(Exception e){
+        } catch (Exception e) {
             return new ArrayList<>();
         }
         return teamsList;
     }
-    public List<TeamPlayer> findAllTeamPlayers(){
-        
+
+    public List<TeamPlayer> findAllTeamPlayers() {
+
         List<TeamPlayer> teamPlayers = null;
         TypedQuery<TeamPlayer> teamPlayerQ;
-        try{
+        try {
             teamPlayerQ = em.createNamedQuery("TeamPlayer.findAllTeamPlayers", TeamPlayer.class);
             teamPlayers = teamPlayerQ.getResultList();
-        }catch(Exception e){
+        } catch (Exception e) {
             return new ArrayList<>();
         }
         return teamPlayers;
     }
-   
-    public List<TeamPlayer> findAllTeamPlayersByTeamId(Team team){
-        
+
+    public List<TeamPlayer> findAllTeamPlayersByTeamId(Team team) {
+
         List<TeamPlayer> teamPlayers = null;
         TypedQuery<TeamPlayer> teamPlayerQ;
-        try{
+        try {
             teamPlayerQ = em.createNamedQuery("TeamPlayer.findAllTeamPlayersByTeamId", TeamPlayer.class);
             teamPlayerQ.setParameter("teamId", team.getTeamId());
             teamPlayers = teamPlayerQ.getResultList();
-        }catch(Exception e){
+        } catch (Exception e) {
             return new ArrayList<>();
         }
         return teamPlayers;
     }
-   
+
 }

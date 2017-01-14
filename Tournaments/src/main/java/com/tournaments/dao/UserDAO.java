@@ -65,7 +65,7 @@ public class UserDAO {
         try {
             queryDevice = em.createNamedQuery("User.findByUsername", User.class);
             queryDevice.setParameter("userName", user.getUserName());
-            user = queryDevice.getSingleResult();
+            existedUser = queryDevice.getSingleResult();
         } catch (NoResultException nre) {
             return existedUser;
         }

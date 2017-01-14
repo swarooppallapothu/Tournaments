@@ -42,7 +42,7 @@ public class PlayerDAO {
             e.printStackTrace();
         }
     }
-   
+
     public void updatePlayer(Player player) {
 
         try {
@@ -64,38 +64,40 @@ public class PlayerDAO {
             e.printStackTrace();
         }
     }
-    
-    public void addPlayerToTeam(TeamPlayer teamPlayer){
-        
-        try{
+
+    public void addPlayerToTeam(TeamPlayer teamPlayer) {
+
+        try {
             etx.begin();
             em.persist(teamPlayer);
             etx.commit();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public void updateTeamPlayer(TeamPlayer teamPlayer){
-        
-        try{
+
+    public void updateTeamPlayer(TeamPlayer teamPlayer) {
+
+        try {
             etx.begin();
             em.merge(teamPlayer);
             etx.commit();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public void removePlayerFromTeam(TeamPlayer teamPlayer){
-        
-        try{
+
+    public void removePlayerFromTeam(TeamPlayer teamPlayer) {
+
+        try {
             etx.begin();
             em.remove(teamPlayer);
             etx.commit();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     public List<Player> findAllPlayers() {
         List<Player> players = null;
         TypedQuery<Player> playerQ;
@@ -107,6 +109,7 @@ public class PlayerDAO {
         }
         return players;
     }
+
     public Player findPlayerByPlayerId(Player player) {
         Player existedPlayer = null;
         TypedQuery<Player> playerQ;
@@ -119,6 +122,7 @@ public class PlayerDAO {
         }
         return existedPlayer;
     }
+
     public Player findPlayerByPlayerName(Player player) {
         Player existedPlayer = null;
         TypedQuery<Player> playerQ;
@@ -131,7 +135,8 @@ public class PlayerDAO {
         }
         return existedPlayer;
     }
-     public List<Player> findPlayersByUserName(User user) {
+
+    public List<Player> findPlayersByUserName(User user) {
         List<Player> players = null;
         TypedQuery<Player> playerQ;
         try {
@@ -143,7 +148,8 @@ public class PlayerDAO {
         }
         return players;
     }
-     public List<Player> findPlayersByUserId(User user) {
+
+    public List<Player> findPlayersByUserId(User user) {
         List<Player> players = null;
         TypedQuery<Player> playerQ;
         try {
