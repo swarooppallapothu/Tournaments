@@ -42,7 +42,11 @@ public class TournamentDetailsAction extends ActionSupport implements ModelDrive
         playedMaptchesList = playedMatchesDAO.findAllMatches();
         return SUCCESS;
     }
-
+    public String findMatchsByTournamentId(){
+        String ids[] = (String[]) parameters.get("tournamentId");
+        playedMaptchesList = playedMatchesDAO.findMatchsByTournamentId(Integer.parseInt(ids[0]));
+        return SUCCESS;
+    }
     public String addTournamentDetailsView() {
         return SUCCESS;
     }

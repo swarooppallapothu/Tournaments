@@ -19,6 +19,11 @@
             <a href="<%=request.getContextPath()%>/players.action">Players</a><br>
         </td>
     </tr>
+    <tr id="listOfTournamentsSideBar">
+        <td>
+            <a href="<%=request.getContextPath()%>/torunamentslist.action?loadType=ALL">List of Tournaments</a><br>
+        </td>
+    </tr>
     <tr id="tournamentDetailsSidebar">
         <td>
             <a href="<%=request.getContextPath()%>/tournamentDetails.action">Tournament Details</a><br>
@@ -39,6 +44,7 @@
     if (parseInt(userClearance) === 0) {
         userRole = "admin";
         $("#listOfTeamSidebar").hide();
+        $("#listOfTournamentsSideBar").hide();
     } else {
         $("#tournamentsSidebar").hide();
         $("#usersSidebar").hide();
