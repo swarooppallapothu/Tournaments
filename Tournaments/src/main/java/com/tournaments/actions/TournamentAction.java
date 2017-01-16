@@ -8,7 +8,6 @@ import com.tournaments.dao.TournamentDAO;
 import com.tournaments.entities.Tournament;
 import com.tournaments.entities.User;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;

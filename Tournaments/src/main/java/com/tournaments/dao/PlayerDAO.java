@@ -153,7 +153,7 @@ public class PlayerDAO {
         List<Player> players = null;
         TypedQuery<Player> playerQ;
         try {
-            playerQ = em.createNamedQuery("Player.findPlayerByUserId", Player.class);
+            playerQ = em.createNamedQuery("Player.findPlayersByUserId", Player.class);
             playerQ.setParameter("userId", user.getUserId());
             players = playerQ.getResultList();
         } catch (Exception e) {

@@ -11,7 +11,7 @@
         <div class="contentDiv">
             <table align="center" class="contentMainTbl">
                 <tr>
-                    <td colspan="2" class="header" width="100%"><h1>Play Ground</h1></td>
+                    <td colspan="2"  class="header" width="100%"><div style="float: left"><h1>Play Ground</h1></div> <div style="float: right;"><a href="<%=request.getContextPath()%>/logout.action">Logout</a></div></td>
                 </tr>
                 <tr>
                     <td width="20%" valign="top" class="sidebar">
@@ -31,18 +31,18 @@
                                     <td><s:property value="#team.count"/></td>
                                     <td><s:property value="teamName" /></td>
                                     <td>
-                                    <s:url id="editTeamURL" action="editTeamView">
+                                        <s:url id="editTeamURL" action="editTeamView">
                                             <s:param name="teamId" value="%{teamId}"></s:param>
-                                            </s:url>
+                                        </s:url>
                                         <s:a href="%{editTeamURL}">Edit</s:a>
-                                </td>
-                                <td>
-                                <s:url id="deleteTeamURL" action="deleteTeam">
-                                             <s:param name="teamId" value="%{teamId}"></s:param>
+                                        </td>
+                                        <td>
+                                        <s:url id="deleteTeamURL" action="deleteTeam">
+                                            <s:param name="teamId" value="%{teamId}"></s:param>
                                         </s:url>
                                         <s:a href="%{deleteTeamURL}">Delete</s:a>
-                                </td>
-                                </tr>
+                                        </td>
+                                    </tr>
                             </s:iterator>
                         </table>
                     </td>

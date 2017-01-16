@@ -31,6 +31,9 @@
         </action>
         <action name="registeruser" method="registerUser" class="com.tournaments.actions.UserAction">
             <result name="success">/login.jsp</result>
+            <result name="users" type="redirectAction">
+                <param name="actionName">users</param>
+            </result>
             <result name="error">/login.jsp</result>
         </action>
         <action name="edituser" method="editUser" class="com.tournaments.actions.UserAction">

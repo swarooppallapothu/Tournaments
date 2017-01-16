@@ -40,12 +40,12 @@ public class PlayerAction extends ActionSupport implements ModelDriven<Player>, 
 
     public String players() {
         User user = (User)sessionMap.get("userObject");
-        if(user.getClearance() == 0){
-        playersList = playerDao.findAllPlayers();
-        }else{
+        if (user.getClearance() == 0) {
+            playersList = playerDao.findAllPlayers();
+        } else {
             playersList = playerDao.findPlayersByUserId(user);
         }
-        
+
         return SUCCESS;
     }
 

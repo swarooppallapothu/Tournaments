@@ -11,14 +11,14 @@
         <div class="contentDiv">
             <table align="center" class="contentMainTbl">
                 <tr>
-                    <td colspan="2" class="header" width="100%"><h1>Play Ground</h1></td>
+                    <td colspan="2"  class="header" width="100%"><div style="float: left"><h1>Play Ground</h1></div> <div style="float: right;"><a href="<%=request.getContextPath()%>/logout.action">Logout</a></div></td>
                 </tr>
                 <tr>
                     <td width="20%" valign="top" class="sidebar">
                         <%@include file="../sidebar.jsp"%>
                     </td>
                     <td width="80%" valign="top" class="contentBody gridWrap">
-                        <a href="<%=request.getContextPath()%>/getUserRegistrationPage.action">Add User</a>
+                        <a href="<%=request.getContextPath()%>/registration.action">Add User</a>
                         <table border='0' width='100%' align='center'>
                             <tr>
                                 <th>#</th>
@@ -35,15 +35,15 @@
                                     <td>
                                         <s:url id="editUserURL" action="edituseerview">
                                             <s:param name="userId" value="%{userId}"></s:param>
-                                            </s:url>
-                                        <s:a href="%{editUserURL}">Edit</s:a>
-                                    </td>
-                                    <td>
-                                        <s:if test="clearance != 0">
-                                        <s:url id="deleteUserURL" action="deleteuser">
-                                             <s:param name="userId" value="%{userId}"></s:param>
                                         </s:url>
-                                        <s:a href="%{deleteUserURL}">Delete</s:a>
+                                        <s:a href="%{editUserURL}">Edit</s:a>
+                                        </td>
+                                        <td>
+                                        <s:if test="clearance != 0">
+                                            <s:url id="deleteUserURL" action="deleteuser">
+                                                <s:param name="userId" value="%{userId}"></s:param>
+                                            </s:url>
+                                            <s:a href="%{deleteUserURL}">Delete</s:a>
                                         </s:if>
                                     </td>
                                 </tr>

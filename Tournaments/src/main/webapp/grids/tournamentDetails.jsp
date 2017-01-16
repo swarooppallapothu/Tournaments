@@ -11,15 +11,15 @@
         <div class="contentDiv">
             <table align="center" class="contentMainTbl">
                 <tr>
-                    <td colspan="2" class="header" width="100%"><h1>Play Ground</h1></td>
+                    <td colspan="2"  class="header" width="100%"><div style="float: left"><h1>Play Ground</h1></div> <div style="float: right;"><a href="<%=request.getContextPath()%>/logout.action">Logout</a></div></td>
                 </tr>
                 <tr>
                     <td width="20%" valign="top" class="sidebar">
                         <%@include file="../sidebar.jsp"%>
                     </td>
                     <td width="80%" valign="top" class="contentBody gridWrap" >
-                        <a href="<%=request.getContextPath()%>/addTournamentDetailsView.action">Add Match</a>
-                        <table border='0' width='100%' align='center'>
+                        <a href="<%=request.getContextPath()%>/addTournamentDetailsView.action" id="addMatch">Add Match</a>
+                        <table border='0' width='100%' align='center' id="tournamentDetails">
                             <tr>
                                 <th>#</th>
                                 <th>Match Name</th>
@@ -43,14 +43,14 @@
                                             <s:param name="playdMatchId" value="%{matchId}"></s:param>
                                         </s:url>
                                         <s:a href="%{editTournamentDetailsURL}">Edit</s:a>
-                                    </td>
-                                    <td>
+                                        </td>
+                                        <td>
                                         <s:url id="deleteTournamentDetailsURL" action="deleteTournamentDetails">
                                             <s:param name="playdMatchId" value="%{matchId}"></s:param>
                                         </s:url>
                                         <s:a href="%{deleteTournamentDetailsURL}">Delete</s:a>
-                                </td>
-                                </tr>
+                                        </td>
+                                    </tr>
                             </s:iterator>
                         </table>
                     </td>
@@ -58,6 +58,15 @@
             </table>
         </div>
         <script>
+            function hideColumns() {
+                if (userRole !== "admin") {
+                    $('#addMatch').hide();
+                    $('#tournamentDetails td:nth-child(7), th:nth-child(7)').hide();
+                    $('#tournamentDetails td:nth-child(8), th:nth-child(8)').hide();
+//                    $('td:nth-child(8)').hide();
+                }
+            }
+            hideColumns();
         </script>
     </body>
 </html>

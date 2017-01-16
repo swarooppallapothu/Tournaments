@@ -20,7 +20,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>, Sess
     private List<User> users = new ArrayList();
     HttpServletRequest request;
     Map parameters = ActionContext.getContext().getParameters();
-    
+
     @Override
     public User getModel() {
         return user;
@@ -56,30 +56,37 @@ public class UserAction extends ActionSupport implements ModelDriven<User>, Sess
     }
 
     public String registerUser() {
+        User sessionUser = (User) sessionMap.get("userObject");
         user.setClearance(1);
         userDao.registerUser(user);
-        return SUCCESS;
+        if (sessionUser != null && sessionUser.getClearance() == 0) {
+            return "users";
+        } else {
+            return SUCCESS;
+        }
     }
 
     public String users() {
         this.setUsers(userDao.findAll());
         return SUCCESS;
     }
-    
-    public String getEditUserView(){
-       String ids[] = (String[])parameters.get("userId");
-       user.setUserId(Integer.parseInt(ids[0]));
-       user = userDao.findByUserId(user);
-       return SUCCESS;
+
+    public String getEditUserView() {
+        String ids[] = (String[]) parameters.get("userId");
+        user.setUserId(Integer.parseInt(ids[0]));
+        user = userDao.findByUserId(user);
+        return SUCCESS;
     }
+
     public String editUser() {
         userDao.updateUser(user);
         return SUCCESS;
     }
+
     public String deleteUser() {
-        String ids[] = (String[])parameters.get("userId");
-       user.setUserId(Integer.parseInt(ids[0]));
-         userDao.deleteUser(user);
+        String ids[] = (String[]) parameters.get("userId");
+        user.setUserId(Integer.parseInt(ids[0]));
+        userDao.deleteUser(user);
         return SUCCESS;
     }
 

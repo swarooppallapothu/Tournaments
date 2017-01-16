@@ -11,7 +11,7 @@
         <div class="contentDiv">
             <table align="center" class="contentMainTbl">
                 <tr>
-                    <td colspan="2" class="header" width="100%"><h1>Play Ground</h1></td>
+                    <td colspan="2"  class="header" width="100%"><div style="float: left"><h1>Play Ground</h1></div> <div style="float: right;"><a href="<%=request.getContextPath()%>/logout.action">Logout</a></div></td>
                 </tr>
                 <tr>
                     <td width="20%" valign="top" class="sidebar">
@@ -37,14 +37,14 @@
                                             <s:param name="playerId" value="%{playerId}"></s:param>
                                         </s:url>
                                         <s:a href="%{editPlayerURL}">Edit</s:a>
-                                    </td>
-                                    <td>
+                                        </td>
+                                        <td>
                                         <s:url id="deletePlayerURL" action="deletePlayer">
                                             <s:param name="playerId" value="%{playerId}"></s:param>
                                         </s:url>
                                         <s:a href="%{deletePlayerURL}">Delete</s:a>
-                                </td>
-                                </tr>
+                                        </td>
+                                    </tr>
                             </s:iterator>
                         </table>
                     </td>
