@@ -161,4 +161,16 @@ public class PlayerDAO {
         }
         return players;
     }
+    public List<Player> findPlayersByTeamId(int teamId) {
+        List<Player> players = null;
+        TypedQuery<Player> playerQ;
+        try {
+            playerQ = em.createNamedQuery("Player.findPlayersByTeamId", Player.class);
+            playerQ.setParameter("teamId", teamId);
+            players = playerQ.getResultList();
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+        return players;
+    }
 }

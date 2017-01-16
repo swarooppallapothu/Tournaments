@@ -18,7 +18,8 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name="PlayedMatchs.findMatchById", query = "Select object(pm) from PlayedMatches pm where pm.matchId =:matchId"),
     @NamedQuery(name="PlayedMatchs.findAllMatches", query = "Select object(pm) from PlayedMatches pm"),
-    @NamedQuery(name="PlayedMatchs.findMatchByUserId", query = "SELECT object(pm) from PlayedMatches pm where pm.user.userId = :userId")
+    @NamedQuery(name="PlayedMatchs.findMatchByUserId", query = "SELECT object(pm) from PlayedMatches pm where pm.user.userId = :userId"),
+    @NamedQuery(name="PlayedMatchs.findMatchsByTournamentId", query = "SELECT object(pm) from PlayedMatches pm where pm.tournament.tournamentId = :tournamentId")
 })
 public class PlayedMatches implements Serializable {
 
@@ -27,6 +28,7 @@ public class PlayedMatches implements Serializable {
     private String matchName;
     private Team teamA;
     private Team teamB;
+    private Team winner;
     private Tournament tournament;
     private User user;
 
@@ -78,7 +80,17 @@ public class PlayedMatches implements Serializable {
     public void setTeamB(Team teamB) {
         this.teamB = teamB;
     }
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "WINNER", referencedColumnName = "TEAM_ID")
+    public Team getWinner() {
+        return winner;
+    }
 
+    public void setWinner(Team winner) {
+        this.winner = winner;
+    }
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TOURNAMENT_ID", referencedColumnName = "TOURNAMENT_ID")
     public Tournament getTournament() {

@@ -41,12 +41,24 @@ public class TournamentAction extends ActionSupport implements ModelDriven<Tourn
     }
 
     public String tournaments() {
+        User user = (User)sessionMap.get("userObject");
+        String ids[] = (String[]) parameters.get("loadType");
+        if(user.getClearance() == 0 || "ALL".equalsIgnoreCase(ids[0])){
         tournmentsList = tournamentDao.findAll();
+        }else{
+           tournmentsList = tournamentDao.findTournamentsByUserId(user);
+        }
         return SUCCESS;
     }
 
     public String getTournamentsMap() {
+        User user = (User)sessionMap.get("userObject");
+        String ids[] = (String[]) parameters.get("loadType");
+        if(user.getClearance() == 0 || "ALL".equalsIgnoreCase(ids[0])){
         tournmentsList = tournamentDao.findAll();
+        }else{
+            tournmentsList = tournamentDao.findTournamentsByUserId(user);
+        }
         tournaments = new LinkedHashMap<String, String>();
         for (Tournament trnmnt : tournmentsList) {
             tournaments.put(trnmnt.getTournamentId() + "", trnmnt.getTournamentName());

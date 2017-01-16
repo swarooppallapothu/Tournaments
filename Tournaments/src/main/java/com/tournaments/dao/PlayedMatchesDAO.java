@@ -81,4 +81,18 @@ public class PlayedMatchesDAO {
         }
         return allMatches;
     }
+    public List<PlayedMatches> findMatchsByTournamentId(int tournamentId) {
+
+        TypedQuery<PlayedMatches> tpmQ;
+        List<PlayedMatches> allMatches = null;
+        try {
+            tpmQ = em.createNamedQuery("PlayedMatchs.findMatchsByTournamentId", PlayedMatches.class);
+            tpmQ.setParameter("tournamentId", tournamentId);
+            allMatches = tpmQ.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+        return allMatches;
+    }
 }

@@ -20,7 +20,9 @@ import javax.persistence.Table;
     @NamedQuery(name = "Player.findPlayerByPlayerId", query = "SELECT object(P) from Player P where P.playerId = :playerId"),
     @NamedQuery(name = "Player.findPlayerByPlayerName", query = "SELECT object(P) from Player P where P.playerName = :playerName"),
     @NamedQuery(name = "Player.findPlayersByUserId", query = "SELECT object(P) from Player P where P.user.userId = :userId"),
-    @NamedQuery(name = "Player.findPlayersByUserName", query = "SELECT object(P) from Player P where P.user.userId = :userName")})
+    @NamedQuery(name = "Player.findPlayersByUserName", query = "SELECT object(P) from Player P where P.user.userId = :userName"),
+    @NamedQuery(name = "Player.findPlayersByTeamId", query = "SELECT object(P) from Player P where P.team.teamId=:teamId"),
+})
 public class Player implements Serializable {
 
     private int playerId;
