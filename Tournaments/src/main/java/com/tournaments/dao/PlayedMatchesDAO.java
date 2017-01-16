@@ -29,9 +29,14 @@ public class PlayedMatchesDAO {
     }
 
     public void updateMatch(PlayedMatches pm) {
-        etx.begin();
-        em.merge(pm);
-        etx.commit();
+        try {
+            etx.begin();
+            em.merge(pm);
+            etx.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void deleteMatch(PlayedMatches pm) {
@@ -81,6 +86,7 @@ public class PlayedMatchesDAO {
         }
         return allMatches;
     }
+
     public List<PlayedMatches> findMatchsByTournamentId(int tournamentId) {
 
         TypedQuery<PlayedMatches> tpmQ;

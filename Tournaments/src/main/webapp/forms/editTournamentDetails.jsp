@@ -46,7 +46,14 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <s:textfield name="results"  label="Result" value="%{playerMatches.results}"/>
+                                        <s:hidden name="winner.oldTeamId" value="%{playerMatches.winner.teamId}"/>
+                                        <s:select name="winner.teamId"  label="Winner" list="{}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <s:hidden name="oldTournamentResult" value="%{playerMatches.results}"/>
+                                        <s:select name="results"  label="Result" list="{}"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -104,8 +111,32 @@
                 });
                 tournamentSelect.val(tournamentDetFormObj["tournament.oldTournamentId"].value);
             }
+            function loadReuslts() {
+                var results = getTournamentResults();
+
+                var resultSelect = $(tournamentDetFormObj["results"]);
+                resultSelect.find('option').remove();
+                $.each(results, function (key, value) {
+                    $('<option>').val(key).text(value).appendTo(resultSelect);
+                });
+                resultSelect.val(tournamentDetFormObj["oldTournamentResult"].value);
+            }
+            function loadWinners() {
+                var winners = {};
+                winners[tournamentDetFormObj["teamA.teamId"].value] = tournamentDetFormObj["teamA.teamId"].textContent.trim();
+                winners[tournamentDetFormObj["teamB.teamId"].value] = tournamentDetFormObj["teamB.teamId"].textContent.trim();
+
+                var winnerSelect = $(tournamentDetFormObj["winner.teamId"]);
+                winnerSelect.find('option').remove();
+                $.each(winners, function (key, value) {
+                    $('<option>').val(key).text(value).appendTo(winnerSelect);
+                });
+                winnerSelect.val(tournamentDetFormObj["winner.oldTeamId"].value);
+            }
+            loadReuslts();
             loadTeamDetails();
             loadTournamentDetails();
+            loadWinners();
         </script>
     </body>
 </html>

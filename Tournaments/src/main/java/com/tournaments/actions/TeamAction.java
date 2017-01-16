@@ -43,7 +43,7 @@ public class TeamAction extends ActionSupport implements ModelDriven<Team>, Sess
     public String teams() {
         User user = (User)sessionMap.get("userObject");
         String ids[] = (String[]) parameters.get("loadType");
-        if(user.getClearance() == 0 || "ALL".equalsIgnoreCase(ids[0])){
+        if(user.getClearance() == 0 || (ids != null && "ALL".equalsIgnoreCase(ids[0]))){
         teamsList = teamDao.findAllTeams();
         }else{
         teamsList = teamDao.findTeamsByUserId(user);

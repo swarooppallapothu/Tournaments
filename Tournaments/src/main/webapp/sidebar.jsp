@@ -4,10 +4,14 @@
             <a href="<%=request.getContextPath()%>/tournaments.action">Tournaments</a> 
         </td>
     </tr>
-
     <tr id="teamSidebar">
         <td>
             <a href="<%=request.getContextPath()%>/teams.action">Teams</a><br>
+        </td>
+    </tr>
+    <tr id="listOfTeamSidebar">
+        <td>
+            <a href="<%=request.getContextPath()%>/teams.action?loadType=ALL">List of Teams</a><br>
         </td>
     </tr>
     <tr id="playerSidebar">
@@ -34,7 +38,7 @@
     var userClearance = "${sessionScope.userObject.clearance}";
     if (parseInt(userClearance) === 0) {
         userRole = "admin";
-
+        $("#listOfTeamSidebar").hide();
     } else {
         $("#tournamentsSidebar").hide();
         $("#usersSidebar").hide();

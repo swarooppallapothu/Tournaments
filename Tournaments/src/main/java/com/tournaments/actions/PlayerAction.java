@@ -41,7 +41,7 @@ public class PlayerAction extends ActionSupport implements ModelDriven<Player>, 
     public String players() {
         User user = (User)sessionMap.get("userObject");
         String ids[] = (String[]) parameters.get("loadType");
-        if(user.getClearance() == 0 || "ALL".equalsIgnoreCase(ids[0])){
+        if(user.getClearance() == 0 || (ids != null && "ALL".equalsIgnoreCase(ids[0]))){
             playersList = playerDao.findAllPlayers();
         } else {
             playersList = playerDao.findPlayersByUserId(user);

@@ -88,3 +88,11 @@ function getTeams() {
     });
     return result;
 }
+
+function getTournamentResults() {
+    return {
+        3: "Victory (3 Points)",
+        1: "Tie (1 Point)",
+        0: "Defeat (0 Point)"
+    };
+}

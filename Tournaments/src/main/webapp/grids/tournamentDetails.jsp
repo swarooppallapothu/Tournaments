@@ -26,6 +26,7 @@
                                 <th>Tournament Name</th>
                                 <th>Team A</th>
                                 <th>Team B</th>
+                                <th>Winner</th>
                                 <th>Match Scores</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -37,6 +38,7 @@
                                     <td><s:property value="tournament.tournamentName" /></td>
                                     <td><s:property value="teamA.teamName" /></td>
                                     <td><s:property value="teamB.teamName" /></td>
+                                    <td><s:property value="winner.teamName" /></td>
                                     <td><s:property value="results" /></td>
                                     <td>
                                         <s:url id="editTournamentDetailsURL" action="editTournamentDetailsView">
@@ -61,8 +63,8 @@
             function hideColumns() {
                 if (userRole !== "admin") {
                     $('#addMatch').hide();
-                    $('#tournamentDetails td:nth-child(7), th:nth-child(7)').hide();
                     $('#tournamentDetails td:nth-child(8), th:nth-child(8)').hide();
+                    $('#tournamentDetails td:nth-child(9), th:nth-child(9)').hide();
 //                    $('td:nth-child(8)').hide();
                 }
             }
