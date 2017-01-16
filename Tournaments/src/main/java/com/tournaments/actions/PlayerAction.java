@@ -39,10 +39,12 @@ public class PlayerAction extends ActionSupport implements ModelDriven<Player>, 
     }
 
     public String players() {
-        User user = (User)sessionMap.get("userObject");
-        String ids[] = (String[]) parameters.get("loadType");
-        if(user.getClearance() == 0 || (ids != null && "ALL".equalsIgnoreCase(ids[0]))){
+        User user = (User) sessionMap.get("userObject");
+        String ids[] = (String[]) parameters.get("teamId");
+        if (user.getClearance() == 0) {
             playersList = playerDao.findAllPlayers();
+        } else if (ids != null) {
+            playersList = playerDao.findPlayersByTeamId(Integer.parseInt(ids[0]));
         } else {
             playersList = playerDao.findPlayersByUserId(user);
         }
@@ -59,7 +61,7 @@ public class PlayerAction extends ActionSupport implements ModelDriven<Player>, 
         player = playerDao.findPlayerByPlayerId(Integer.parseInt(ids[0]));
         return SUCCESS;
     }
-    
+
     public String addPlayer() {
         User user = (User) sessionMap.get("userObject");
         player.setUser(user);

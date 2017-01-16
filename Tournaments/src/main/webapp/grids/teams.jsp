@@ -18,11 +18,12 @@
                         <%@include file="../sidebar.jsp"%>
                     </td>
                     <td width="80%" valign="top" class="contentBody gridWrap">
-                        <a href="<%=request.getContextPath()%>/addTeamView.action">Add Team</a>
-                        <table border='0' width='100%' align='center'>
+                        <a href="<%=request.getContextPath()%>/addTeamView.action" id="addTeam">Add Team</a>
+                        <table border='0' width='100%' align='center' id="teamDetails">
                             <tr>
                                 <th>#</th>
                                 <th>Team Name</th>
+                                <th>Players</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -31,6 +32,12 @@
                                     <td><s:property value="#team.count"/></td>
                                     <td><s:property value="teamName" /></td>
                                     <td>
+                                        <s:url id="playerDetailsURL" action="players">
+                                            <s:param name="teamId" value="%{teamId}"></s:param>
+                                        </s:url>
+                                        <s:a href="%{playerDetailsURL}">Player Details</s:a>
+                                        </td>
+                                        <td>
                                         <s:url id="editTeamURL" action="editTeamView">
                                             <s:param name="teamId" value="%{teamId}"></s:param>
                                         </s:url>
@@ -50,6 +57,14 @@
             </table>
         </div>
         <script>
+            var loadType = getParameterByName('loadType');
+            if (loadType || loadType === "ALL") {
+                $('#addTeam').hide();
+                $('#teamDetails td:nth-child(4), th:nth-child(4)').hide();
+                $('#teamDetails td:nth-child(5), th:nth-child(5)').hide();
+            } else if (userRole === "admin") {
+                $('#teamDetails td:nth-child(3), th:nth-child(3)').hide();
+            }
         </script>
     </body>
 </html>

@@ -18,8 +18,8 @@
                         <%@include file="../sidebar.jsp"%>
                     </td>
                     <td width="80%" valign="top" class="contentBody gridWrap" >
-                        <a href="<%=request.getContextPath()%>/addPlayerView.action">Add Player</a>
-                        <table border='0' width='100%' align='center'>
+                        <a href="<%=request.getContextPath()%>/addPlayerView.action" id="playerAddItem">Add Player</a>
+                        <table border='0' width='100%' align='center' id="playerDetails">
                             <tr>
                                 <th>#</th>
                                 <th>Player Name</th>
@@ -52,6 +52,12 @@
             </table>
         </div>
         <script>
+            var reqTeamId = getParameterByName('teamId');
+            if (reqTeamId) {
+                $('#playerAddItem').hide();
+                $('#playerDetails td:nth-child(4), th:nth-child(4)').hide();
+                $('#playerDetails td:nth-child(5), th:nth-child(5)').hide();
+            }
         </script>
     </body>
 </html>
