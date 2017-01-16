@@ -50,7 +50,7 @@ public class TournamentAction extends ActionSupport implements ModelDriven<Tourn
         }
         return SUCCESS;
     }
-
+    
     public String getTournamentsMap() {
         User user = (User)sessionMap.get("userObject");
         String ids[] = (String[]) parameters.get("loadType");

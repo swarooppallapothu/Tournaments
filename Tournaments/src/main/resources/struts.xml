@@ -57,6 +57,9 @@
         <action name="tournaments" method="tournaments" class="com.tournaments.actions.TournamentAction">
             <result name="success">/grids/tournaments.jsp</result>
         </action>
+        <action name="torunamentslist" method="tournaments" class="com.tournaments.actions.TournamentAction">
+            <result name="success">/grids/tournamentsList.jsp</result>
+        </action>
         <action name="getTournaments" method="getTournamentsMap" class="com.tournaments.actions.TournamentAction">
             <result type="json" name="json">
                 <param name="root">tournaments</param>
@@ -205,6 +208,9 @@
                 <param name="actionName">tournamentDetails</param>
             </result> 
             <result name="error">/login.jsp</result>
+        </action>
+        <action name="torunamentsmatches" method="findMatchsByTournamentId" class="com.tournaments.actions.TournamentDetailsAction">
+            <result name="success">/grids/tournamentDetails.jsp</result>
         </action>        
         <!--Played Matches Actions Ends-->
     </package>
